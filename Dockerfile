@@ -1,13 +1,14 @@
 # Development stage
 FROM node:18-alpine AS development
 
-WORKDIR /app
+WORKDIR /src
 
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies including devDependencies
 RUN npm install
+RUN npm install -D tailwindcss postcss autoprefixer
 
 # Copy source code
 COPY . .
@@ -26,14 +27,18 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install production dependencies only
-RUN npm install --only=production
+# Install all dependencies (including devDependencies for build)
+RUN npm install
+RUN npm install -D tailwindcss postcss autoprefixer
 
 # Copy source code
 COPY . .
 
 # Build the application
 RUN npm run build
+
+# Clean up devDependencies
+RUN npm prune --production
 
 # Expose port
 EXPOSE 3000
