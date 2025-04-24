@@ -48,7 +48,10 @@ const Footer = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {/* Logo & Description */}
               <div className="sm:col-span-1">
-                <Link href="/" className="inline-block mb-4">
+                <Link
+                  href="/"
+                  className="inline-block mb-4 p-1 rounded-full bg-white/90"
+                >
                   <Image
                     src="/images/logo.png"
                     alt="Nhà hàng Vợ Chồng Đại Hàng"

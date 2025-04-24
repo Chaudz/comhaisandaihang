@@ -5,9 +5,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Next.js + Tailwind CSS + TypeScript",
+  title: "Nhà Hàng Vợ Chồng Đại Hàng - Ẩm Thực Hải Sản Lý Sơn",
   description:
-    "A modern web application built with Next.js, Tailwind CSS, and TypeScript",
+    "Nhà hàng hải sản ngon nổi tiếng tại Lý Sơn, mang đến trải nghiệm ẩm thực biển đảo tuyệt vời với không gian thoáng đãng, view đẹp.",
 };
 
 export default function RootLayout({
