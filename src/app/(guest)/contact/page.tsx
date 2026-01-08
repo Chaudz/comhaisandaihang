@@ -8,14 +8,9 @@ import {
 } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 
-// Animation Variants
-const fadeInSlideUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const staggerContainer = {
@@ -23,17 +18,16 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Delay between each child animation
+      staggerChildren: 0.2,
     },
   },
 };
 
 const ContactPage = () => {
-  // State cho form (ví dụ đơn giản)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    subject: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,290 +45,281 @@ const ContactPage = () => {
     setIsSubmitting(true);
     setSubmitMessage("");
 
-    // --- Xử lý gửi form tại đây ---
-    // Ví dụ: Gửi đến API endpoint của bạn
     console.log("Form data submitted:", formData);
-    // Thay thế bằng logic gọi API thực tế
     try {
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
-      // if (!response.ok) throw new Error('Gửi thất bại');
-
-      // Mô phỏng thành công sau 2 giây
       await new Promise((resolve) => setTimeout(resolve, 2000));
-
       setSubmitMessage(
         "Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất."
       );
-      setFormData({ name: "", email: "", phone: "", message: "" }); // Reset form
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitMessage("Đã có lỗi xảy ra. Vui lòng thử lại sau.");
     } finally {
       setIsSubmitting(false);
     }
-    // ------------------------------
   };
 
   return (
-    <div className="bg-slate-50 overflow-x-hidden">
+    <div className="bg-slate-950 min-h-screen">
       {/* Hero Section */}
-      <section
-        className="relative bg-cover bg-center h-[40vh] md:h-[45vh] flex items-center justify-center text-white"
-        style={{ backgroundImage: "url('/images/lien-he.png')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
-        <div className="relative z-10 text-center px-4">
-          <motion.h1
-            variants={fadeInSlideUp}
-            initial="hidden"
-            animate="visible"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold drop-shadow-lg"
-          >
-            Liên Hệ Với Chúng Tôi
-          </motion.h1>
-          <motion.p
-            variants={fadeInSlideUp}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl mt-3 md:mt-4 max-w-lg md:max-w-2xl mx-auto drop-shadow-md"
-          >
-            Chúng tôi luôn sẵn lòng lắng nghe và giải đáp mọi thắc mắc của bạn.
-          </motion.p>
+      <section className="relative h-[50vh] flex items-center justify-center">
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/images/lien-he-bg.png')",
+            }}
+          ></div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10"
+        >
+          <div className="border-4 border-white px-8 py-4">
+            <h1 className="text-2xl md:text-2xl font-bold text-white tracking-widest">
+              LIÊN HỆ
+            </h1>
+          </div>
+        </motion.div>
       </section>
 
-      {/* Contact Info & Form Section */}
-      <section className="py-12 md:py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 md:gap-16">
-          {/* Contact Information */}
+      {/* Get in Touch Section */}
+      <section className="py-20 bg-slate-950">
+        <div className="container mx-auto px-4">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-yellow-500 text-2xl font-serif italic mb-16"
+          >
+            Liên lạc với chúng tôi!
+          </motion.p>
+
+          {/* Contact Info Grid */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
-            animate="visible"
-            className="space-y-6 md:space-y-8"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-20"
           >
-            <motion.h2
-              variants={fadeInSlideUp}
-              className="text-2xl md:text-3xl font-bold text-slate-800 mb-4 md:mb-6"
-            >
-              Thông Tin Liên Hệ
-            </motion.h2>
-
-            <motion.div
-              variants={fadeInSlideUp}
-              className="flex items-start space-x-3 sm:space-x-4"
-            >
-              <MapPinIcon className="h-6 w-6 md:h-8 md:w-8 text-teal-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg md:text-xl font-semibold text-slate-900">
-                  Địa chỉ
-                </h3>
-                <p className="text-sm md:text-base text-slate-600 mt-0.5 md:mt-1">
-                  Gần cảng cá cũ Lý Sơn
-                </p>
-                <a
-                  href="https://www.google.com/maps/place/NH%C3%80+H%C3%80NG+C%C6%A0M+H%E1%BA%A2I+S%E1%BA%A2N+%C4%90%E1%BA%A0I+H%E1%BA%B0NG/@15.3759172,109.0943285,17z/data=!3m1!4b1!4m6!3m5!1s0x31683eb59a9c7a5b:0x3925c20d8aec67ad!8m2!3d15.3759172!4d109.0969034!16s%2Fg%2F11c48xfhcz?entry=ttu&g_ep=EgoyMDI1MDQyMi4wIKXMDSoASAFQAw%3D%3D"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-teal-600 hover:underline mt-1 inline-block text-sm md:text-base"
-                >
-                  Xem bản đồ
-                </a>
+            {/* Phone */}
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="flex justify-center mb-4">
+                <PhoneIcon className="w-12 h-12 text-yellow-500" />
               </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeInSlideUp}
-              className="flex items-start space-x-3 sm:space-x-4"
-            >
-              <PhoneIcon className="h-6 w-6 md:h-8 md:w-8 text-teal-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg md:text-xl font-semibold text-slate-900">
-                  Điện thoại
-                </h3>
-                <p className="text-sm md:text-base text-slate-600 mt-0.5 md:mt-1">
-                  <a href="tel:0941390279" className="hover:text-teal-700">
-                    0941390279
-                  </a>
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeInSlideUp}
-              className="flex items-start space-x-3 sm:space-x-4"
-            >
-              <EnvelopeIcon className="h-6 w-6 md:h-8 md:w-8 text-teal-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg md:text-xl font-semibold text-slate-900">
-                  Email
-                </h3>
-                <p className="text-sm md:text-base text-slate-600 mt-0.5 md:mt-1">
-                  <a
-                    href="mailto:comhaisandaihang@gmail.com"
-                    className="hover:text-teal-700"
-                  >
-                    comhaisandaihang@gmail.com
-                  </a>
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeInSlideUp}
-              className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-slate-200"
-            >
-              <h3 className="text-lg md:text-xl font-semibold text-slate-900 mb-2 md:mb-3">
-                Giờ mở cửa
+              <h3 className="text-white text-sm uppercase tracking-wider mb-3">
+                ĐIỆN THOẠI
               </h3>
-              <p className="text-sm md:text-base text-slate-600">
-                Thứ 2 - Chủ Nhật: 10:00 - 23:00
+              <div className="h-px bg-yellow-500/50 w-16 mx-auto mb-3"></div>
+              <p className="text-slate-400 text-sm">
+                <a
+                  href="tel:0941390279"
+                  className="hover:text-yellow-500 transition"
+                >
+                  0941 390 279
+                </a>
+              </p>
+            </motion.div>
+
+            {/* Address */}
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="flex justify-center mb-4">
+                <MapPinIcon className="w-12 h-12 text-yellow-500" />
+              </div>
+              <h3 className="text-white text-sm uppercase tracking-wider mb-3">
+                ĐỊA CHỈ
+              </h3>
+              <div className="h-px bg-yellow-500/50 w-16 mx-auto mb-3"></div>
+              <p className="text-slate-400 text-sm">
+                Gần cảng cá cũ Lý Sơn
+                <br />
+                Quảng Ngãi, Việt Nam
+              </p>
+            </motion.div>
+
+            {/* Email */}
+            <motion.div variants={fadeInUp} className="text-center">
+              <div className="flex justify-center mb-4">
+                <EnvelopeIcon className="w-12 h-12 text-yellow-500" />
+              </div>
+              <h3 className="text-white text-sm uppercase tracking-wider mb-3">
+                EMAIL
+              </h3>
+              <div className="h-px bg-yellow-500/50 w-16 mx-auto mb-3"></div>
+              <p className="text-slate-400 text-sm">
+                <a
+                  href="mailto:comhaisandaihang@gmail.com"
+                  className="hover:text-yellow-500 transition"
+                >
+                  comhaisandaihang@gmail.com
+                </a>
               </p>
             </motion.div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl mx-auto"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-4 md:mb-6">
-              Gửi Lời Nhắn Cho Chúng Tôi
-            </h2>
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-4 md:space-y-6 bg-white p-6 md:p-8 rounded-lg shadow-lg"
-            >
-              <motion.div
-                variants={fadeInSlideUp}
-                initial="hidden"
-                animate="visible"
-              >
-                <label
-                  htmlFor="name"
-                  className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
-                >
-                  Họ và Tên
-                </label>
+            <div className="text-center mb-10">
+              <p className="text-slate-400 text-sm uppercase tracking-wider mb-2">
+                NẾU BẠN CÓ BẤT KỲ CÂU HỎI NÀO
+              </p>
+              <p className="text-white text-lg">
+                Đừng ngần ngại gửi tin nhắn cho chúng tôi
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <input
                   type="text"
                   name="name"
-                  id="name"
+                  placeholder="Họ và tên"
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-3 py-1.5 sm:px-4 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base"
+                  className="w-full px-6 py-4 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500 transition"
                 />
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                <motion.div
-                  variants={fadeInSlideUp}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: 0.1 }}
-                >
-                  <label
-                    htmlFor="email"
-                    className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-3 py-1.5 sm:px-4 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base"
-                  />
-                </motion.div>
-                <motion.div
-                  variants={fadeInSlideUp}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: 0.2 }}
-                >
-                  <label
-                    htmlFor="phone"
-                    className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Số Điện Thoại (tùy chọn)
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    id="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-3 py-1.5 sm:px-4 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base"
-                  />
-                </motion.div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-6 py-4 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500 transition"
+                />
               </div>
 
-              <motion.div
-                variants={fadeInSlideUp}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.3 }}
-              >
-                <label
-                  htmlFor="message"
-                  className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
-                >
-                  Lời Nhắn
-                </label>
-                <textarea
-                  name="message"
-                  id="message"
-                  rows={4}
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-3 py-1.5 sm:px-4 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base"
-                ></textarea>
-              </motion.div>
+              <input
+                type="text"
+                name="subject"
+                placeholder="Tiêu đề"
+                required
+                value={formData.subject}
+                onChange={handleChange}
+                className="w-full px-6 py-4 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500 transition"
+              />
 
-              <motion.div
-                variants={fadeInSlideUp}
-                initial="hidden"
-                animate="visible"
-                transition={{ delay: 0.4 }}
-              >
+              <textarea
+                name="message"
+                placeholder="Nội dung tin nhắn"
+                rows={6}
+                required
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full px-6 py-4 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500 transition resize-none"
+              ></textarea>
+
+              <div className="text-center">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full inline-flex justify-center py-2.5 px-5 sm:py-3 sm:px-6 border border-transparent shadow-sm text-sm sm:text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 ${
+                  className={`px-12 py-4 bg-yellow-600 text-slate-950 font-bold uppercase tracking-wider hover:bg-yellow-500 transition-all duration-300 ${
                     isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
-                  {isSubmitting ? "Đang gửi..." : "Gửi Lời Nhắn"}
+                  {isSubmitting ? "ĐANG GỬI..." : "GỬI TIN NHẮN"}
                 </button>
-              </motion.div>
+              </div>
 
               {submitMessage && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className={`mt-3 md:mt-4 text-xs sm:text-sm text-center ${
+                <p
+                  className={`text-center text-sm ${
                     submitMessage.includes("lỗi")
-                      ? "text-red-600"
-                      : "text-green-600"
+                      ? "text-red-400"
+                      : "text-green-400"
                   }`}
                 >
                   {submitMessage}
-                </motion.p>
+                </p>
               )}
             </form>
           </motion.div>
+
+          {/* Social Media */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-20"
+          >
+            <p className="text-yellow-500 text-xl font-serif italic mb-8">
+              Kết nối với chúng tôi!
+            </p>
+            <div className="flex justify-center gap-6">
+              {/* Facebook */}
+              <a
+                href="#"
+                className="w-12 h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
+                aria-label="Facebook"
+              >
+                <svg
+                  className="w-6 h-6 text-slate-950"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                </svg>
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="#"
+                className="w-12 h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
+                aria-label="Instagram"
+              >
+                <svg
+                  className="w-6 h-6 text-slate-950"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+              </a>
+
+              {/* Zalo */}
+              <a
+                href="#"
+                className="w-12 h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
+                aria-label="Zalo"
+              >
+                <svg
+                  className="w-6 h-6 text-slate-950"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 2.237.738 4.304 1.985 5.977L2 22l4.148-1.905A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.77 0-3.416-.577-4.745-1.553l-.34-.235-2.817 1.287 1.312-2.759-.257-.362A7.958 7.958 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
+                </svg>
+              </a>
+            </div>
+          </motion.div>
         </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="h-[500px] relative">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3823.8599415896876!2d109.09432851487953!3d15.375917247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31683eb59a9c7a5b%3A0x3925c20d8aec67ad!2zTmbDgCBI4bqwTkcgQ8ahTSBI4bqiSSBT4bqiTiDEkOG6oEkgSOG6sE5H!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="grayscale"
+        ></iframe>
       </section>
     </div>
   );

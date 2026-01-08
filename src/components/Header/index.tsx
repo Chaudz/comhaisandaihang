@@ -2,16 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, Fragment, useEffect } from "react";
+import { useState, Fragment } from "react";
 import { usePathname } from "next/navigation";
 import { Dialog, Transition } from "@headlessui/react";
-import {
-  XMarkIcon,
-  Bars3Icon,
-  PhoneIcon,
-  EnvelopeIcon,
-  ClockIcon,
-} from "@heroicons/react/24/outline";
+import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 // Animation Variants for Mobile Menu Links
@@ -21,7 +15,7 @@ const staggerContainer = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1, // Delay slightly before starting stagger
+      delayChildren: 0.1,
     },
   },
 };
@@ -36,151 +30,102 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  const phoneNumber = "0941390279"; // Replace with actual phone
-  const emailAddress = "comhaisandaihang@gmail.com"; // Replace with actual email
-  const openingHours = "Mở cửa: 10:00 - 23:00"; // Thêm giờ mở cửa
-
-  // --- Scroll detection ---
+  // Scroll detection
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 50); // Set to true if scrolled more than 50px
+    setIsScrolled(latest > 50);
   });
-  // ----------------------
 
   return (
     <motion.header
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-lg shadow-lg"
-          : "bg-white/90 backdrop-blur-md shadow-md"
+          ? "bg-slate-950/98 backdrop-blur-lg shadow-2xl"
+          : "bg-slate-950/95 backdrop-blur-md shadow-lg"
       }`}
-      // Animation for background/shadow changes
       animate={{
         backgroundColor: isScrolled
-          ? "rgba(255, 255, 255, 0.95)"
-          : "rgba(255, 255, 255, 0.9)",
-        backdropFilter: isScrolled ? "blur(16px)" : "blur(10px)",
-        boxShadow: isScrolled
-          ? "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
-          : "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+          ? "rgba(2, 6, 23, 0.98)"
+          : "rgba(2, 6, 23, 0.95)",
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-      {/* --- Top Bar --- */}
-      <motion.div
-        className={`bg-teal-700 md:block hidden text-white text-xs overflow-hidden transition-all duration-300 ease-in-out ${
-          isScrolled ? "h-0 py-0" : "py-1.5"
-        }`}
-        // Animate height and padding based on scroll state
-        animate={{
-          height: isScrolled ? 0 : "auto",
-          paddingTop: isScrolled ? 0 : "0.375rem", // py-1.5
-          paddingBottom: isScrolled ? 0 : "0.375rem",
-          opacity: isScrolled ? 0 : 1,
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 hidden md:flex items-center justify-between">
-          {/* Left Side: Phone & Opening Hours */}
-          <div className="flex items-center space-x-6">
-            {" "}
-            {/* Tăng khoảng cách giữa các mục */}
-            {/* Phone */}
-            <a
-              href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-              className="flex items-center hover:text-teal-200 transition-colors"
-            >
-              <PhoneIcon className="h-3.5 w-3.5 mr-1.5" />
-              <span>{phoneNumber}</span>
-            </a>
-            {/* Opening Hours */}
-            <div className="flex items-center">
-              {" "}
-              {/* Không cần hover effect đặc biệt */}
-              <ClockIcon className="h-3.5 w-3.5 mr-1.5" />
-              <span>{openingHours}</span>
-            </div>
-          </div>
-          {/* Right Side: Email */}
-          <div className="flex items-center space-x-4">
-            <a
-              href={`mailto:${emailAddress}`}
-              className="flex items-center hover:text-teal-200 transition-colors"
-            >
-              <EnvelopeIcon className="h-3.5 w-3.5 mr-1.5" />
-              <span>{emailAddress}</span>
-            </a>
-            {/* Optional: Add Social Links Icon here */}
-          </div>
-        </div>
-      </motion.div>
-      {/* --- End Top Bar --- */}
-
-      {/* --- Main Header Content --- */}
       <div
         className={`transition-all duration-300 ${
-          isScrolled ? "py-1" : "py-2"
+          isScrolled ? "py-3" : "py-4"
         }`}
       >
-        {/* Wrap main content to control its padding based on scroll */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between transition-height duration-300">
+          <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center flex-shrink-0">
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
               <Image
-                src="/images/logo.png"
-                alt="Nhà hàng hải sản Vợ Chồng Đại Hàng"
-                width={isScrolled ? 60 : 70} // Slightly smaller logo when scrolled
-                height={isScrolled ? 60 : 70} // Adjust height accordingly
+                src="/images/image.png"
+                alt="Quán Cơm Hải Sản Đại Hằng"
+                width={isScrolled ? 60 : 90}
+                height={isScrolled ? 60 : 90}
                 className="object-contain transition-all duration-300 rounded-full"
                 priority
               />
+              <div className="hidden sm:block">
+                <h1
+                  className={`font-bold text-white transition-all duration-300 ${
+                    isScrolled ? "text-lg" : "text-xl"
+                  }`}
+                >
+                  Đại Hằng
+                </h1>
+                <p className="text-xs text-slate-400">Cơm Hải Sản Lý Sơn</p>
+              </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-10">
-              <NavLink href="/" isActive={pathname === "/"}>
-                Trang chủ
-              </NavLink>
-              <NavLink href="/menu" isActive={pathname === "/menu"}>
-                Thực đơn
-              </NavLink>
-              <NavLink href="/about" isActive={pathname === "/about"}>
-                Giới thiệu
-              </NavLink>
-              <NavLink href="/contact" isActive={pathname === "/contact"}>
-                Liên hệ
-              </NavLink>
-            </nav>
+            {/* Right Side: Navigation + Booking Button */}
+            <div className="flex items-center gap-8 lg:gap-10">
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center space-x-8 lg:space-x-10">
+                <NavLink href="/" isActive={pathname === "/"}>
+                  Trang Chủ
+                </NavLink>
+                <NavLink href="/menu" isActive={pathname === "/menu"}>
+                  Thực Đơn
+                </NavLink>
+                <NavLink href="/about" isActive={pathname === "/about"}>
+                  Giới Thiệu
+                </NavLink>
+                <NavLink href="/contact" isActive={pathname === "/contact"}>
+                  Liên Hệ
+                </NavLink>
+              </nav>
 
-            {/* Booking Button & Mobile Menu Toggle */}
-            <div className="flex items-center space-x-4">
-              {/* Animated Booking Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link
-                  href="/booking"
-                  className="hidden sm:inline-block bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-7 py-2.5 rounded-full font-semibold hover:from-teal-600 hover:to-cyan-700 transition-all duration-300 ease-in-out transform shadow-md hover:shadow-lg"
+              {/* Booking Button & Mobile Menu Toggle */}
+              <div className="flex items-center space-x-4">
+                {/* Animated Booking Button */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Đặt bàn
-                </Link>
-              </motion.div>
-              {/* Mobile Menu Button */}
-              <button
-                type="button"
-                className="md:hidden p-2 text-slate-600 hover:text-teal-600 transition-colors"
-                onClick={() => setMobileMenuOpen(true)}
-              >
-                <span className="sr-only">Mở menu chính</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-              </button>
+                  <Link
+                    href="/booking"
+                    className="hidden sm:inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-2.5 rounded-full font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 ease-in-out transform shadow-lg hover:shadow-xl"
+                  >
+                    Đặt Bàn
+                  </Link>
+                </motion.div>
+
+                {/* Mobile Menu Button */}
+                <button
+                  type="button"
+                  className="md:hidden p-2 text-white hover:text-red-500 transition-colors"
+                  onClick={() => setMobileMenuOpen(true)}
+                >
+                  <span className="sr-only">Mở menu chính</span>
+                  <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {/* --- End Main Header Content --- */}
 
       {/* Mobile Menu */}
       <Transition.Root show={mobileMenuOpen} as={Fragment}>
@@ -199,7 +144,7 @@ const Header = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black bg-opacity-50" />
           </Transition.Child>
 
           <div className="fixed inset-0 flex justify-end">
@@ -213,27 +158,33 @@ const Header = () => {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="relative w-full max-w-xs bg-white shadow-xl h-full p-6 flex flex-col">
+              <Dialog.Panel className="relative w-full max-w-xs bg-slate-950 shadow-xl h-full p-6 flex flex-col">
                 <div className="flex items-center justify-between mb-8 flex-shrink-0">
-                  <Link href="/" className="-m-1.5 p-1.5">
-                    <span className="sr-only">Nhà hàng Vợ Chồng Đại Hàng</span>
+                  <Link
+                    href="/"
+                    className="-m-1.5 p-1.5 flex items-center gap-2"
+                  >
                     <Image
-                      className="h-8 w-auto object-contain"
+                      className="h-10 w-10 object-contain rounded-full"
                       src="/images/logo.png"
-                      alt=""
-                      width={80}
-                      height={25}
+                      alt="Logo"
+                      width={40}
+                      height={40}
                     />
+                    <span className="text-white font-bold text-lg">
+                      Đại Hằng
+                    </span>
                   </Link>
                   <button
                     type="button"
-                    className="-m-2.5 rounded-md p-2.5 text-slate-700 hover:text-slate-900 transition-colors"
+                    className="-m-2.5 rounded-md p-2.5 text-slate-300 hover:text-white transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <span className="sr-only">Đóng menu</span>
                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
+
                 {/* Animated Navigation Links */}
                 <motion.div
                   className="flow-root flex-grow overflow-y-auto"
@@ -241,35 +192,42 @@ const Header = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <div className="-my-6 divide-y divide-slate-200/60">
+                  <div className="-my-6 divide-y divide-slate-800">
                     <div className="space-y-2 py-6">
                       <MobileNavLink
                         href="/"
                         onClick={() => setMobileMenuOpen(false)}
                         isActive={pathname === "/"}
                       >
-                        Trang chủ
+                        Trang Chủ
                       </MobileNavLink>
                       <MobileNavLink
                         href="/menu"
                         onClick={() => setMobileMenuOpen(false)}
                         isActive={pathname === "/menu"}
                       >
-                        Thực đơn
+                        Thực Đơn
                       </MobileNavLink>
                       <MobileNavLink
                         href="/about"
                         onClick={() => setMobileMenuOpen(false)}
                         isActive={pathname === "/about"}
                       >
-                        Giới thiệu
+                        Giới Thiệu
                       </MobileNavLink>
                       <MobileNavLink
                         href="/contact"
                         onClick={() => setMobileMenuOpen(false)}
                         isActive={pathname === "/contact"}
                       >
-                        Liên hệ
+                        Liên Hệ
+                      </MobileNavLink>
+                      <MobileNavLink
+                        href="/gallery"
+                        onClick={() => setMobileMenuOpen(false)}
+                        isActive={pathname === "/gallery"}
+                      >
+                        Không Gian
                       </MobileNavLink>
                     </div>
                     <div className="py-6">
@@ -278,7 +236,7 @@ const Header = () => {
                         onClick={() => setMobileMenuOpen(false)}
                         isButton={true}
                       >
-                        Đặt bàn
+                        Đặt Bàn
                       </MobileNavLink>
                     </div>
                   </div>
@@ -306,24 +264,16 @@ const NavLink = ({
     <Link
       href={href}
       className={`relative font-medium transition-colors duration-200 ${
-        isActive ? "text-teal-600" : "text-slate-700 hover:text-teal-600"
+        isActive ? "text-white" : "text-slate-300 hover:text-white"
       }`}
     >
       {children}
-      {/* Underline animation */}
-      <motion.span
-        className="absolute left-0 bottom-[-6px] h-[2px] bg-teal-500"
-        style={{ width: isActive ? "100%" : "0%" }}
-        animate={{ width: isActive ? "100%" : "0%" }}
-        transition={{ duration: 0.3 }}
-      />
-      {/* Hover effect (only shows if not active) */}
-      {!isActive && (
+      {/* Active underline */}
+      {isActive && (
         <motion.span
-          className="absolute left-0 bottom-[-6px] h-[2px] bg-teal-500 origin-left"
-          initial={{ scaleX: 0 }}
-          whileHover={{ scaleX: 1 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="absolute left-0 bottom-[-8px] h-[2px] bg-red-500 w-full"
+          layoutId="activeNav"
+          transition={{ duration: 0.3 }}
         />
       )}
     </Link>
@@ -351,10 +301,10 @@ const MobileNavLink = ({
         onClick={onClick}
         className={`block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 transition-colors duration-150 ${
           isButton
-            ? "bg-teal-600 text-white text-center hover:bg-teal-700"
+            ? "bg-gradient-to-r from-red-600 to-red-700 text-white text-center hover:from-red-700 hover:to-red-800"
             : isActive
-            ? "bg-teal-50 text-teal-700"
-            : "text-slate-800 hover:bg-slate-100"
+            ? "bg-slate-800 text-white"
+            : "text-slate-300 hover:bg-slate-800 hover:text-white"
         }`}
       >
         {children}

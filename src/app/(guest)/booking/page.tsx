@@ -9,20 +9,18 @@ import {
   EnvelopeIcon,
   ChatBubbleLeftRightIcon,
   MapPinIcon,
-  InformationCircleIcon,
-  ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
 
 const BookingPage = () => {
-  const today = new Date().toISOString().split("T")[0]; // Lấy ngày hiện tại dạng YYYY-MM-DD
+  const today = new Date().toISOString().split("T")[0];
 
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     date: today,
-    time: "18:00", // Giờ mặc định
-    guests: 2, // Số khách mặc định
+    time: "18:00",
+    guests: 2,
     requests: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,7 +32,6 @@ const BookingPage = () => {
     >
   ) => {
     const { name, value } = e.target;
-    // Đảm bảo số khách không âm
     if (name === "guests" && parseInt(value, 10) < 1) {
       return;
     }
@@ -46,24 +43,12 @@ const BookingPage = () => {
     setIsSubmitting(true);
     setSubmitMessage("");
 
-    // --- Xử lý gửi form đặt bàn tại đây ---
     console.log("Booking data submitted:", formData);
     try {
-      // Ví dụ: Gửi đến API endpoint /api/booking
-      // const response = await fetch('/api/booking', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
-      // if (!response.ok) throw new Error('Đặt bàn thất bại');
-
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Mô phỏng
-
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       setSubmitMessage(
         "Đặt bàn thành công! Chúng tôi sẽ liên hệ xác nhận sớm."
       );
-      // Có thể không cần reset form ở đây, tùy yêu cầu
-      // setFormData({ name: '', phone: '', email: '', date: today, time: '18:00', guests: 2, requests: '' });
     } catch (error) {
       console.error("Error submitting booking:", error);
       setSubmitMessage(
@@ -72,10 +57,8 @@ const BookingPage = () => {
     } finally {
       setIsSubmitting(false);
     }
-    // -------------------------------------
   };
 
-  // Danh sách các khung giờ có thể chọn (Ví dụ)
   const availableTimes = [
     "10:00",
     "10:30",
@@ -97,72 +80,36 @@ const BookingPage = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-slate-50 to-white min-h-screen">
-      {/* Hero Section - Responsive Adjustments */}
-      <section
-        className="relative bg-cover bg-center h-[40vh] flex items-center justify-center text-white"
-        style={{ backgroundImage: "url('/images/booking-table.png')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold drop-shadow-lg mb-3 md:mb-4">
-            Đặt Bàn Online
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl max-w-xl md:max-w-2xl mx-auto drop-shadow-md">
-            Giữ chỗ trước để có trải nghiệm ẩm thực tốt nhất tại nhà hàng chúng
-            tôi
-          </p>
-        </div>
-      </section>
-
-      <div className="container mx-auto px-4 py-6 md:py-8">
-        <div className="flex flex-col lg:flex-row gap-6 md:gap-8">
-          {/* Main Content */}
-          <div className="flex-1">
-            {/* Features Grid - Responsive Adjustments */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 md:mb-8">
-              <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-slate-200 text-center sm:text-left">
-                <CalendarDaysIcon className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600 mb-1 sm:mb-2 mx-auto sm:mx-0" />
-                <h3 className="text-xs sm:text-sm font-semibold">
-                  Đặt Bàn 24/7
-                </h3>
-              </div>
-              <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-slate-200 text-center sm:text-left">
-                <UserGroupIcon className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600 mb-1 sm:mb-2 mx-auto sm:mx-0" />
-                <h3 className="text-xs sm:text-sm font-semibold">
-                  Phục Vụ Chuyên Nghiệp
-                </h3>
-              </div>
-              <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-slate-200 text-center sm:text-left">
-                <ClipboardDocumentListIcon className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600 mb-1 sm:mb-2 mx-auto sm:mx-0" />
-                <h3 className="text-xs sm:text-sm font-semibold">
-                  Xác Nhận Ngay
-                </h3>
-              </div>
-              <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm border border-slate-200 text-center sm:text-left">
-                <MapPinIcon className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600 mb-1 sm:mb-2 mx-auto sm:mx-0" />
-                <h3 className="text-xs sm:text-sm font-semibold">
-                  Vị Trí Đắc Địa
-                </h3>
-              </div>
+    <div className="bg-slate-950 min-h-screen">
+      {/* Main Booking Form Section */}
+      <section className="py-16 md:py-40">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide">
+                ĐẶT BÀN ONLINE
+              </h1>
+              <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+                Trải nghiệm hương vị hải sản tươi ngon tại Lý Sơn. Vui lòng điền
+                thông tin bên dưới để đặt bàn trước.
+              </p>
             </div>
 
             {/* Booking Form */}
-            <div className="bg-white p-5 sm:p-6 md:p-8 rounded-xl shadow-lg border border-slate-200">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-5 md:mb-6">
-                Thông Tin Đặt Bàn
-              </h2>
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                {/* Date, Time, Guests */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            <div className="bg-white/5 backdrop-blur-sm p-8 md:p-10 rounded-2xl border border-white/10">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Date and Name Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label
                       htmlFor="date"
-                      className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
+                      className="block text-sm font-medium text-slate-300 mb-2"
                     >
                       Ngày
                     </label>
                     <div className="relative">
+                      <CalendarDaysIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white pointer-events-none z-10" />
                       <input
                         type="date"
                         name="date"
@@ -171,63 +118,66 @@ const BookingPage = () => {
                         min={today}
                         value={formData.date}
                         onChange={handleChange}
-                        className="w-full pl-3 pr-3 sm:pr-4 py-1.5 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base transition-all duration-300 ease-in-out"
+                        style={{
+                          colorScheme: "dark",
+                        }}
+                        className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:brightness-0 [&::-webkit-calendar-picker-indicator]:contrast-200"
                       />
                     </div>
                   </div>
+
                   <div>
                     <label
-                      htmlFor="time"
-                      className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
+                      htmlFor="name"
+                      className="block text-sm font-medium text-slate-300 mb-2"
                     >
-                      Giờ
+                      Họ và Tên
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Nhập họ tên đầy đủ"
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                    />
+                  </div>
+                </div>
+
+                {/* Email and Guests Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-slate-300 mb-2"
+                    >
+                      Email
                     </label>
                     <div className="relative">
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-slate-500">
-                        <ClockIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                      </span>
-                      <select
-                        name="time"
-                        id="time"
-                        required
-                        value={formData.time}
+                      <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={formData.email}
                         onChange={handleChange}
-                        className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 appearance-none text-sm sm:text-base transition-all duration-300 ease-in-out"
-                      >
-                        {availableTimes.map((time) => (
-                          <option key={time} value={time}>
-                            {time}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="absolute inset-y-0 right-0 flex items-center pr-2 sm:pr-3 text-slate-500 pointer-events-none">
-                        <svg
-                          className="h-4 w-4 sm:h-5 sm:w-5"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.06z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </span>
+                        placeholder="email@example.com"
+                        className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                      />
                     </div>
                   </div>
+
                   <div>
                     <label
                       htmlFor="guests"
-                      className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
+                      className="block text-sm font-medium text-slate-300 mb-2"
                     >
-                      Số lượng khách
+                      Số Khách
                     </label>
                     <div className="relative">
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-slate-500">
-                        <UserGroupIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                      </span>
+                      <UserGroupIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                       <input
                         type="number"
                         name="guests"
@@ -236,42 +186,67 @@ const BookingPage = () => {
                         min="1"
                         value={formData.guests}
                         onChange={handleChange}
-                        className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base transition-all duration-300 ease-in-out"
+                        className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Personal Info */}
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
-                  >
-                    Họ và Tên
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-3 py-1.5 sm:px-4 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base transition-all duration-300 ease-in-out"
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                {/* Time and Phone Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="time"
+                      className="block text-sm font-medium text-slate-300 mb-2"
+                    >
+                      Giờ Đến
+                    </label>
+                    <div className="relative">
+                      <ClockIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 pointer-events-none z-10" />
+                      <select
+                        name="time"
+                        id="time"
+                        required
+                        value={formData.time}
+                        onChange={handleChange}
+                        className="w-full pl-10 pr-10 py-3 bg-white/10 border border-white/20 rounded-lg text-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition cursor-pointer"
+                      >
+                        {availableTimes.map((time) => (
+                          <option
+                            key={time}
+                            value={time}
+                            className="bg-slate-800"
+                          >
+                            {time}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <svg
+                          className="h-5 w-5 text-slate-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.06z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
+                      className="block text-sm font-medium text-slate-300 mb-2"
                     >
                       Số Điện Thoại
                     </label>
                     <div className="relative">
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-slate-500">
-                        <PhoneIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                      </span>
+                      <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                       <input
                         type="tel"
                         name="phone"
@@ -279,77 +254,59 @@ const BookingPage = () => {
                         required
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base transition-all duration-300 ease-in-out"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
-                    >
-                      Email (tùy chọn)
-                    </label>
-                    <div className="relative">
-                      <span className="absolute inset-y-0 left-0 flex items-center pl-2 sm:pl-3 text-slate-500">
-                        <EnvelopeIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                      </span>
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base transition-all duration-300 ease-in-out"
+                        placeholder="0941 390 279"
+                        className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Special Requests */}
+                {/* Description */}
                 <div>
                   <label
                     htmlFor="requests"
-                    className="block text-xs sm:text-sm font-medium text-slate-700 mb-1"
+                    className="block text-sm font-medium text-slate-300 mb-2"
                   >
-                    Yêu cầu đặc biệt (tùy chọn)
+                    Yêu Cầu Đặc Biệt
                   </label>
                   <div className="relative">
-                    <span className="absolute top-2.5 sm:top-3 left-0 flex items-center pl-2 sm:pl-3 text-slate-500">
-                      <ChatBubbleLeftRightIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                    </span>
+                    <ChatBubbleLeftRightIcon className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
                     <textarea
                       name="requests"
                       id="requests"
-                      rows={3}
+                      rows={4}
                       value={formData.requests}
                       onChange={handleChange}
-                      placeholder="Ví dụ: ghế trẻ em, ngồi gần cửa sổ,..."
-                      className="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 border border-slate-300 rounded-md shadow-sm focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm sm:text-base transition-all duration-300 ease-in-out"
+                      placeholder="Nhập yêu cầu đặc biệt của bạn..."
+                      className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition resize-none"
+                      maxLength={1000}
                     ></textarea>
+                    <div className="absolute bottom-3 right-3 text-xs text-slate-500">
+                      {formData.requests.length}/1000
+                    </div>
                   </div>
                 </div>
 
                 {/* Submit Button */}
-                <div>
+                <div className="pt-4">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full inline-flex justify-center py-2.5 px-5 sm:py-3 sm:px-6 border border-transparent shadow-sm text-base sm:text-lg font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 ${
+                    className={`w-full py-4 px-8 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold text-lg rounded-full hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-950 transition-all duration-300 shadow-lg hover:shadow-xl ${
                       isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                   >
-                    {isSubmitting ? "Đang xử lý..." : "Xác Nhận Đặt Bàn"}
+                    {isSubmitting ? "ĐANG XỬ LÝ..." : "XÁC NHẬN ĐẶT BÀN →"}
                   </button>
                 </div>
 
                 {/* Submission Message */}
                 {submitMessage && (
                   <p
-                    className={`mt-3 md:mt-4 text-xs sm:text-sm text-center ${
+                    className={`mt-4 text-center font-medium ${
                       submitMessage.includes("lỗi")
-                        ? "text-red-600"
-                        : "text-green-600"
+                        ? "text-red-400"
+                        : "text-green-400"
                     }`}
                   >
                     {submitMessage}
@@ -358,63 +315,8 @@ const BookingPage = () => {
               </form>
             </div>
           </div>
-
-          {/* Sidebar */}
-          <div className="lg:w-80">
-            {/* Opening Hours */}
-            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-slate-200 mb-4 md:mb-6">
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <ClockIcon className="h-5 w-5 md:h-6 md:w-6 text-teal-600" />
-                <h3 className="text-base md:text-lg font-semibold">
-                  Giờ Mở Cửa
-                </h3>
-              </div>
-              <div className="space-y-1.5 md:space-y-2 text-xs sm:text-sm">
-                <div className="flex justify-between">
-                  <span className="text-slate-600">Thứ 2 - Chủ Nhật</span>
-                  <span className="font-medium">10:00 - 23:00</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-slate-200 mb-4 md:mb-6">
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <PhoneIcon className="h-5 w-5 md:h-6 md:w-6 text-teal-600" />
-                <h3 className="text-base md:text-lg font-semibold">Liên Hệ</h3>
-              </div>
-              <div className="space-y-2 md:space-y-3 text-xs sm:text-sm">
-                <p className="flex items-center gap-1.5 sm:gap-2">
-                  <PhoneIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-slate-400" />
-                  <span>0941390279</span>
-                </p>
-                <p className="flex items-center gap-1.5 sm:gap-2">
-                  <EnvelopeIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-slate-400" />
-                  <span>comhaisandaihang@gmail.com</span>
-                </p>
-                <p className="flex items-center gap-1.5 sm:gap-2">
-                  <MapPinIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-slate-400" />
-                  <span>Gần cảng cá cũ Lý Sơn</span>
-                </p>
-              </div>
-            </div>
-
-            {/* Info Box */}
-            <div className="bg-teal-50 p-4 md:p-6 rounded-xl border border-teal-100">
-              <div className="flex items-start gap-2 sm:gap-3">
-                <InformationCircleIcon className="h-5 w-5 md:h-6 md:w-6 text-teal-600 flex-shrink-0 mt-0.5" />
-                <div className="text-xs sm:text-sm text-teal-800">
-                  <p className="font-medium mb-1 sm:mb-2">Lưu ý khi đặt bàn:</p>
-                  <ul className="list-disc list-inside space-y-0.5 sm:space-y-1 text-teal-700">
-                    <li>Vui lòng đến đúng giờ đã đặt</li>
-                    <li>Bàn sẽ được giữ trong vòng 15 phút</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

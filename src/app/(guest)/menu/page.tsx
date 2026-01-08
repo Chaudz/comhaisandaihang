@@ -1,346 +1,524 @@
-"use client"; // Mark as Client Component
+"use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react"; // Import hooks
-import { motion, AnimatePresence } from "framer-motion"; // Import motion and AnimatePresence
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
-// Sample menu data (Bạn nên thay thế bằng dữ liệu thực tế từ CMS hoặc API)
-const menuData = [
-  {
-    category: "Khai Vị",
-    id: "khai-vi",
-    items: [
-      {
-        name: "Gỏi cuốn tôm thịt",
-        description: "Bánh tráng cuốn tôm, thịt, bún, rau sống, chấm mắm nêm",
-        price: "60.000đ",
-        imageUrl: "/images/dishes/goi-cuon.jpg",
-      },
-      {
-        name: "Chả giò hải sản",
-        description: "Chả giò giòn rụm với nhân hải sản tươi ngon",
-        price: "85.000đ",
-        imageUrl: "/images/dishes/cha-gio.jpg",
-      },
-      {
-        name: "Salad rong biển trứng cua",
-        description: "Salad tươi mát với rong biển, trứng cua và sốt mè rang",
-        price: "95.000đ",
-        imageUrl: "/images/dishes/salad-rong-bien.jpg",
-      },
-    ],
-  },
-  {
-    category: "Món Chính - Hải Sản Tươi Sống",
-    id: "hai-san-tuoi-song",
-    items: [
-      {
-        name: "Tôm hùm nướng bơ tỏi",
-        id: "tom-hum",
-        description: "Tôm hùm baby tươi sống nướng bơ tỏi thơm lừng",
-        price: "850.000đ/kg",
-        imageUrl: "/images/dishes/tom-hum-nuong.jpg",
-      },
-      {
-        name: "Cua hoàng đế hấp bia",
-        id: "cua-hoang-de",
-        description: "Cua hoàng đế Alaska hấp bia giữ trọn vị ngọt",
-        price: "1.800.000đ/kg",
-        imageUrl: "/images/dishes/cua-hoang-de.jpg",
-      },
-      {
-        name: "Ghẹ hấp sả",
-        description: "Ghẹ tươi chắc thịt hấp cùng sả thơm nồng",
-        price: "450.000đ/kg",
-        imageUrl: "/images/dishes/ghe-hap.jpg",
-      },
-      {
-        name: "Hàu nướng mỡ hành",
-        description: "Hàu sữa béo ngậy nướng cùng mỡ hành và đậu phộng",
-        price: "120.000đ/phần",
-        imageUrl: "/images/dishes/hau-nuong.jpg",
-      },
-      {
-        name: "Cá mú hấp Hồng Kông",
-        description: "Cá mú tươi ngon hấp xì dầu theo phong cách Hồng Kông",
-        price: "600.000đ/kg",
-        imageUrl: "/images/dishes/ca-mu-hap.jpg",
-      },
-    ],
-  },
-  {
-    category: "Lẩu",
-    id: "lau-hai-san",
-    items: [
-      {
-        name: "Lẩu hải sản Thái chua cay",
-        description:
-          "Nước lẩu Tom Yum đậm đà cùng hải sản tươi (tôm, mực, nghêu, cá)",
-        price: "350.000đ",
-        imageUrl: "/images/dishes/lau-thai.jpg",
-      },
-      {
-        name: "Lẩu cua đồng",
-        description: "Lẩu riêu cua đồng quê dân dã, thơm ngon",
-        price: "280.000đ",
-        imageUrl: "/images/dishes/lau-cua-dong.jpg",
-      },
-    ],
-  },
-  {
-    category: "Cơm - Mì",
-    id: "com-mi",
-    items: [
-      {
-        name: "Cơm chiên hải sản",
-        description: "Cơm chiên vàng giòn với tôm, mực và rau củ",
-        price: "120.000đ",
-        imageUrl: "/images/dishes/com-chien.jpg",
-      },
-      {
-        name: "Mì xào hải sản",
-        description: "Mì trứng xào cùng hải sản tươi và rau cải",
-        price: "130.000đ",
-        imageUrl: "/images/dishes/mi-xao.jpg",
-      },
-    ],
-  },
-  {
-    category: "Đồ Uống",
-    id: "do-uong",
-    items: [
-      {
-        name: "Nước ép trái cây",
-        description: "Cam / Ổi / Dưa hấu / Thơm",
-        price: "45.000đ",
-        imageUrl: "/images/dishes/nuoc-ep.jpg",
-      },
-      {
-        name: "Bia các loại",
-        description: "Tiger / Heineken / Saigon Special",
-        price: "25.000đ - 35.000đ",
-        imageUrl: "/images/dishes/bia.jpg",
-      },
-      {
-        name: "Nước ngọt",
-        description: "Coca / Pepsi / 7Up / Sprite",
-        price: "20.000đ",
-        imageUrl: "/images/dishes/nuoc-ngot.jpg",
-      },
-    ],
-  },
-];
+// Menu categories with icons
+// const categories = [
+// { id: "appetizers", name: "Khai Vị", icon: "🥗" },
+// { id: "main", name: "Món Chính", icon: "🍤" },
+// { id: "desserts", name: "Tráng Miệng", icon: "🍰" },
+// ];
 
-// Extract categories for filtering + Add 'All' option
-const categories = [
-  { id: "all", name: "Tất cả" },
-  ...menuData.map((cat) => ({ id: cat.id, name: cat.category })),
-];
-
-// Animation Variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1, // Delay between each item animation
+// Menu items organized by category
+const menuData = {
+  appetizers: [
+    {
+      name: "Gỏi cuốn tôm thịt",
+      description:
+        "Bánh tráng cuốn tôm, thịt, bún, rau sống, chấm mắm nêm đặc biệt",
+      price: "60.000 ₫",
+      image: "/images/foods/canh-ca-2.png",
     },
-  },
+    {
+      name: "Chả giò hải sản",
+      description:
+        "Chả giò giòn rụm với nhân hải sản tươi ngon, rau củ thơm lừng",
+      price: "85.000 ₫",
+      image: "/images/foods/canh-ca-2.png",
+    },
+    {
+      name: "Chả giò hải sản",
+      description:
+        "Chả giò giòn rụm với nhân hải sản tươi ngon, rau củ thơm lừng",
+      price: "85.000 ₫",
+      image: "/images/foods/canh-ca-2.png",
+    },
+    {
+      name: "Chả giò hải sản",
+      description:
+        "Chả giò giòn rụm với nhân hải sản tươi ngon, rau củ thơm lừng",
+      price: "85.000 ₫",
+      image: "/images/foods/canh-ca-2.png",
+    },
+    {
+      name: "Chả giò hải sản",
+      description:
+        "Chả giò giòn rụm với nhân hải sản tươi ngon, rau củ thơm lừng",
+      price: "85.000 ₫",
+      image: "/images/foods/canh-ca-2.png",
+    },
+    {
+      name: "Chả giò hải sản",
+      description:
+        "Chả giò giòn rụm với nhân hải sản tươi ngon, rau củ thơm lừng",
+      price: "85.000 ₫",
+      image: "/images/foods/canh-ca-2.png",
+    },
+  ],
+  // main: [
+  //   {
+  //     name: "Tôm hùm nướng bơ tỏi",
+  //     description:
+  //       "Tôm hùm baby tươi sống nướng bơ tỏi thơm lừng, kèm rau củ nướng",
+  //     price: "850.000 ₫",
+  //     image: "/images/dishes/tom-hum-nuong.jpg",
+  //   },
+  //   {
+  //     name: "Cua hoàng đế hấp bia",
+  //     description:
+  //       "Cua hoàng đế Alaska hấp bia giữ trọn vị ngọt, chấm muối tiêu chanh",
+  //     price: "1.800.000 ₫",
+  //     image: "/images/dishes/cua-hoang-de.jpg",
+  //   },
+  // ],
+  // desserts: [
+  //   {
+  //     name: "Bánh flan caramel",
+  //     description: "Bánh flan mịn màng với caramel đắng nhẹ, kem tươi mát lạnh",
+  //     price: "45.000 ₫",
+  //     image: "/images/dishes/flan.jpg",
+  //   },
+  //   {
+  //     name: "Chè tổ yến",
+  //     description:
+  //       "Yến sào Nha Trang cao cấp, nấu cùng đường phèn, hạt sen tươi",
+  //     price: "120.000 ₫",
+  //     image: "/images/dishes/che-yen.jpg",
+  //   },
+  // ],
 };
 
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
+// Drinks data
+// const drinksCategories = [
+//   { id: "beer", name: "Bia", icon: "🍺" },
+//   { id: "wine", name: "Rượu vang", icon: "🍷" },
+//   { id: "cocktails", name: "Cocktail", icon: "🍹" },
+//   { id: "soft", name: "Nước ngọt", icon: "🥤" },
+// ];
+
+const drinksData = {
+  cocktails: [
+    {
+      name: "Mojito Bạc Hà",
+      description: "Rum trắng, lá bạc hà tươi, nước cốt chanh, đường, soda",
+      price: "120.000 ₫",
+      image: "/images/drinks/mojito.jpg",
     },
-  },
-  hover: {
-    scale: 1.03,
-    boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)",
-    transition: { duration: 0.3 },
-  },
+    {
+      name: "Long Island Iced Tea",
+      description:
+        "Vodka, Rum, Gin, Tequila, Triple Sec, nước cốt chanh, Coca Cola",
+      price: "150.000 ₫",
+      image: "/images/drinks/long-island.jpg",
+    },
+  ],
+  beer: [
+    {
+      name: "Bia Bạc Hà",
+      description: "Bia Bạc Hà tươi ngon, thơm lừng",
+      price: "120.000 ₫",
+      image: "/images/drinks/beer.png",
+    },
+    {
+      name: "Bia Bạc Hà",
+      description: "Bia Bạc Hà tươi ngon, thơm lừng",
+      price: "120.000 ₫",
+      image: "/images/drinks/beer.png",
+    },
+  ],
 };
 
 const MenuPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [filteredMenuData, setFilteredMenuData] = useState(menuData);
+  const [activeCategory, setActiveCategory] = useState("appetizers");
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeDrinkCategory, setActiveDrinkCategory] = useState("cocktails");
+  const [currentDrinkSlide, setCurrentDrinkSlide] = useState(0);
 
-  // Effect to filter data when selectedCategory changes
-  useEffect(() => {
-    if (selectedCategory === "all") {
-      setFilteredMenuData(menuData);
-    } else {
-      setFilteredMenuData(
-        menuData.filter((cat) => cat.id === selectedCategory)
-      );
-    }
-  }, [selectedCategory]);
+  const currentItems = menuData[activeCategory as keyof typeof menuData] || [];
+  const currentDrinks =
+    drinksData[activeDrinkCategory as keyof typeof drinksData] || [];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % Math.ceil(currentItems.length / 2));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) =>
+        (prev - 1 + Math.ceil(currentItems.length / 2)) %
+        Math.ceil(currentItems.length / 2)
+    );
+  };
+
+  const nextDrinkSlide = () => {
+    setCurrentDrinkSlide((prev) => (prev + 1) % currentDrinks.length);
+  };
+
+  const prevDrinkSlide = () => {
+    setCurrentDrinkSlide(
+      (prev) => (prev - 1 + currentDrinks.length) % currentDrinks.length
+    );
+  };
+
+  // Get current pair of food items
+  const leftItem = currentItems[currentSlide * 2];
+  const rightItem = currentItems[currentSlide * 2 + 1];
+
+  // Get current single drink
+  const leftDrink = currentDrinks[currentDrinkSlide];
+  const rightDrink = currentDrinks[currentDrinkSlide + 1];
 
   return (
-    <div className="bg-white">
-      {/* Hero Section for Menu - Enhanced */}
-      <section
-        className="relative bg-cover bg-center h-[40vh] md:h-[50vh] flex items-center justify-center text-white"
-        style={{ backgroundImage: "url('/images/thuc-don.png')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/30"></div>
-        <div className="relative z-10 text-center px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold drop-shadow-xl mb-2 md:mb-3"
-          >
-            Khám Phá Thực Đơn
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base sm:text-xl md:text-2xl mt-2 md:mt-4 max-w-lg md:max-w-3xl mx-auto drop-shadow-lg font-light"
-          >
-            Tinh hoa hải sản tươi ngon và hương vị độc đáo đang chờ bạn.
-          </motion.p>
-        </div>
-      </section>
+    <div className="min-h-screen bg-slate-950 relative overflow-hidden pt-40">
+      {/* Dark texture overlay */}
+      <div className="absolute inset-0 bg-[url('/images/dark-texture.jpg')] opacity-30 mix-blend-multiply"></div>
 
-      {/* Filter Section - Updated for Mobile Scroll */}
-      <div className="sticky top-[60px] sm:top-[68px] md:top-[84px] z-30 bg-white/95 backdrop-blur-lg shadow-sm py-2.5 md:py-4 mb-4 md:mb-8">
-        {/* Adjusted sticky top value and padding */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Enable horizontal scroll on mobile */}
-          <div className="flex overflow-x-auto whitespace-nowrap space-x-2 sm:space-x-3 md:space-x-0 md:flex-wrap md:justify-center md:gap-2 lg:gap-4 scrollbar-hide">
-            {/* Added scrollbar-hide utility if you have it configured in tailwind.config.js, otherwise remove */}
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 ease-in-out flex-shrink-0 ${
-                  // Added flex-shrink-0
-                  selectedCategory === category.id
-                    ? "bg-teal-600 text-white shadow-md"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                }`}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {category.name}
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </div>
+      <div className="relative z-10 py-20">
+        {/* Menu Section */}
+        <section className="mb-32">
+          <div className="container mx-auto px-4">
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <div className="flex items-center justify-center gap-8 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent to-yellow-500 w-32"></div>
+                <h1 className="text-5xl md:text-6xl font-bold text-yellow-500 tracking-widest">
+                  THỰC ĐƠN
+                </h1>
+                <div className="h-px bg-gradient-to-l from-transparent to-yellow-500 w-32"></div>
+              </div>
+            </motion.div>
 
-      {/* Menu Content - Use filteredMenuData */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 md:pb-24 pt-2 md:pt-8">
-        {" "}
-        {/* Adjusted padding */}
-        <AnimatePresence mode="wait">
-          {" "}
-          {/* Use mode='wait' for smoother transitions when filtering */}
-          {filteredMenuData.length > 0 ? (
-            filteredMenuData.map((category, categoryIndex) => (
-              <motion.section
-                key={category.id} // Key needs to be stable for AnimatePresence
-                id={category.id}
-                className={`mb-10 md:mb-20 scroll-mt-24 md:scroll-mt-40 ${
-                  // Adjusted margins and scroll-mt
-                  categoryIndex > 0 && selectedCategory === "all"
-                    ? "pt-4 md:pt-8"
-                    : ""
-                }`}
-                // Add initial/animate only if you want the whole section to animate
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {/* Category Heading */}
-                {selectedCategory === "all" && (
-                  <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-slate-800 mb-6 md:mb-12 pb-1 sm:pb-2 border-b-2 border-teal-500 inline-block">
-                    {/* Adjusted heading size */}
-                    {category.category}
-                  </h2>
-                )}
-
-                <motion.div
-                  className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden" // Add exit variant
+            {/* Category Icons */}
+            {/* <div className="flex justify-center gap-12 mb-16">
+              {categories.map((category) => (
+                <motion.button
+                  key={category.id}
+                  onClick={() => {
+                    setActiveCategory(category.id);
+                    setCurrentSlide(0);
+                  }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex flex-col items-center gap-3"
                 >
-                  {" "}
-                  {/* Adjusted gap */}
-                  {category.items.map((item) => (
-                    <motion.div
-                      key={item.name} // Unique key for each item
-                      id={item.id}
-                      className="bg-white rounded-xl shadow-md flex flex-col overflow-hidden"
-                      variants={itemVariants}
-                      whileHover="hover"
-                      layout // Add layout for smooth repositioning when filtering
-                    >
-                      {/* Image Section */}
-                      <div className="relative w-full h-48 sm:h-56">
-                        {" "}
-                        {/* Adjusted image height for mobile */}
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="transition-transform duration-500 ease-in-out group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                      </div>
-                      {/* Text Content Section */}
-                      <div className="p-4 sm:p-5 md:p-6 flex-grow flex flex-col justify-between">
-                        {" "}
-                        {/* Adjusted padding */}
-                        <div>
-                          <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-slate-900 mb-1 md:mb-2">
-                            {/* Adjusted title size */}
-                            {item.name}
-                          </h3>
-                          {item.description && (
-                            <p className="text-slate-600 mt-1 text-xs sm:text-sm mb-2 md:mb-4">
-                              {/* Adjusted margin */}
-                              {item.description}
-                            </p>
+                  <div
+                    className={`w-20 h-20 rounded-full flex items-center justify-center text-4xl transition-all ${
+                      activeCategory === category.id
+                        ? "bg-yellow-500 shadow-lg shadow-yellow-500/50"
+                        : "bg-white/10 backdrop-blur-sm"
+                    }`}
+                  >
+                    {category.icon}
+                  </div>
+                  <span
+                    className={`text-sm font-medium uppercase tracking-wider ${
+                      activeCategory === category.id
+                        ? "text-yellow-500"
+                        : "text-white/60"
+                    }`}
+                  >
+                    {category.name}
+                  </span>
+                </motion.button>
+              ))}
+            </div> */}
+
+            {/* Main Carousel */}
+            <div className="relative max-w-6xl mx-auto">
+              {/* Background texture behind dishes */}
+              <div className="absolute inset-0 -inset-x-32 -inset-y-16 bg-gradient-to-b from-slate-900/50 via-slate-800/50 to-slate-900/50 rounded-3xl blur-3xl -z-10"></div>
+
+              {/* Scattered spices/ingredients decoration */}
+              <div className="absolute top-0 left-10 w-2 h-2 bg-orange-600/30 rounded-full blur-sm"></div>
+              <div className="absolute top-20 right-20 w-1 h-1 bg-yellow-500/20 rounded-full"></div>
+              <div className="absolute bottom-10 left-20 w-1.5 h-1.5 bg-red-600/20 rounded-full blur-sm"></div>
+              <div className="absolute bottom-0 right-16 w-2 h-2 bg-green-600/20 rounded-full"></div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <ChevronLeftIcon className="w-6 h-6 text-white" />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <ChevronRightIcon className="w-6 h-6 text-white" />
+              </button>
+
+              {/* Dishes Display */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-12"
+                >
+                  {/* Left Dish */}
+                  {leftItem && (
+                    <div className="text-center">
+                      <div className="relative mb-8">
+                        {/* Dish image - white plate background */}
+                        <div className="w-full aspect-square bg-white rounded-full shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex items-center justify-center overflow-hidden">
+                          {leftItem.image ? (
+                            <div className="w-full h-full relative">
+                              <Image
+                                src={leftItem.image}
+                                alt={leftItem.name}
+                                fill
+                                className="object-cover rounded-full"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-4/5 h-4/5 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+                              <span className="text-sm">Hình ảnh món ăn</span>
+                            </div>
                           )}
                         </div>
-                        <p className="text-sm sm:text-base md:text-lg font-bold text-teal-600 mt-1 md:mt-3 self-end">
-                          {/* Adjusted price size */}
-                          {item.price}
-                        </p>
                       </div>
-                    </motion.div>
-                  ))}
+                      {/* <h3 className="text-2xl font-bold text-yellow-500 mb-3 uppercase">
+                        {leftItem.name}
+                      </h3> */}
+                      {/* <p className="text-white/70 text-sm mb-4 px-4">
+                        {leftItem.description}
+                      </p> */}
+                      {/* <p className="text-yellow-500 text-2xl font-bold">
+                        {leftItem.price}
+                      </p> */}
+                    </div>
+                  )}
+
+                  {/* Right Dish */}
+                  {rightItem && (
+                    <div className="text-center">
+                      <div className="relative mb-8">
+                        <div className="w-full aspect-square bg-white rounded-full shadow-2xl flex items-center justify-center overflow-hidden">
+                          {rightItem.image ? (
+                            <div className="w-full h-full relative">
+                              <Image
+                                src={rightItem.image}
+                                alt={rightItem.name}
+                                fill
+                                className="object-cover rounded-full"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-4/5 h-4/5 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+                              <span className="text-sm">Hình ảnh món ăn</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      {/* <h3 className="text-2xl font-bold text-yellow-500 mb-3 uppercase">
+                        {rightItem.name}
+                      </h3>
+                      <p className="text-white/70 text-sm mb-4 px-4">
+                        {rightItem.description}
+                      </p>
+                      <p className="text-yellow-500 text-2xl font-bold">
+                        {rightItem.price}
+                      </p> */}
+                    </div>
+                  )}
                 </motion.div>
-              </motion.section>
-            ))
-          ) : (
-            // Restore the 'No results' message JSX
-            <motion.div // Wrap the 'No results' message in motion.div for exit animation
-              key="no-results"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-center py-12 md:py-16"
+              </AnimatePresence>
+
+              {/* Pagination Dots */}
+              <div className="flex justify-center gap-2 mt-12">
+                {Array.from({ length: Math.ceil(currentItems.length / 2) }).map(
+                  (_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        currentSlide === index
+                          ? "bg-yellow-500 w-8"
+                          : "bg-white/30"
+                      }`}
+                    />
+                  )
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Drinks Section */}
+        <section>
+          <div className="container mx-auto px-4">
+            {/* Drinks Title */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
             >
-              <p className="text-lg md:text-xl text-slate-600">
-                Không tìm thấy món ăn phù hợp.
-              </p>
-              {/* Optional: Add an image or icon here */}
+              <div className="flex items-center justify-center gap-8 mb-8">
+                <div className="h-px bg-gradient-to-r from-transparent to-yellow-500 w-32"></div>
+                <h2 className="text-5xl md:text-6xl font-bold text-yellow-500 tracking-widest">
+                  ĐỒ UỐNG
+                </h2>
+                <div className="h-px bg-gradient-to-l from-transparent to-yellow-500 w-32"></div>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
+
+            {/* Drink Category Icons */}
+            {/* <div className="flex justify-center gap-8 mb-16">
+              {drinksCategories.map((category) => (
+                <motion.button
+                  key={category.id}
+                  onClick={() => {
+                    setActiveDrinkCategory(category.id);
+                    setCurrentDrinkSlide(0);
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <div className="text-3xl opacity-60 hover:opacity-100 transition">
+                    {category.icon}
+                  </div>
+                  <span
+                    className={`text-xs uppercase tracking-wider ${
+                      activeDrinkCategory === category.id
+                        ? "text-yellow-500"
+                        : "text-white/50"
+                    }`}
+                  >
+                    {category.name}
+                  </span>
+                </motion.button>
+              ))}
+            </div> */}
+
+            {/* Drinks Carousel */}
+            <div className="relative max-w-6xl mx-auto">
+              {/* Background texture behind drinks */}
+              <div className="absolute inset-0 -inset-x-32 -inset-y-16 bg-gradient-to-b from-slate-900/40 via-slate-800/40 to-slate-900/40 rounded-3xl blur-3xl -z-10"></div>
+
+              {/* Ice cubes decoration */}
+              <div className="absolute top-10 left-16 w-3 h-3 bg-white/10 rounded blur-sm rotate-12"></div>
+              <div className="absolute top-32 right-24 w-2 h-2 bg-white/5 rounded blur-sm -rotate-45"></div>
+              <div className="absolute bottom-20 left-32 w-2.5 h-2.5 bg-white/8 rounded blur-sm rotate-45"></div>
+              <button
+                onClick={prevDrinkSlide}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <ChevronLeftIcon className="w-6 h-6 text-white" />
+              </button>
+
+              <button
+                onClick={nextDrinkSlide}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition"
+              >
+                <ChevronRightIcon className="w-6 h-6 text-white" />
+              </button>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentDrinkSlide}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex justify-center"
+                >
+                  {leftDrink && (
+                    <div className="text-center max-w-md">
+                      <div className="relative mb-8 h-96 flex items-end justify-center">
+                        {/* Actual drink image */}
+                        {leftDrink.image ? (
+                          <div className="w-48 h-80 relative">
+                            <Image
+                              src={leftDrink.image}
+                              alt={leftDrink.name}
+                              layout="fill"
+                              objectFit="contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="w-48 h-80 bg-gradient-to-b from-white/20 to-white/5 backdrop-blur-sm rounded-lg border border-white/20 flex items-center justify-center">
+                            <span className="text-white/50 text-sm">
+                              Hình đồ uống
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      {/* <h3 className="text-2xl font-bold text-yellow-500 mb-3 uppercase">
+                        {leftDrink.name}
+                      </h3>
+                      <p className="text-white/70 text-sm mb-4 px-4">
+                        {leftDrink.description}
+                      </p>
+                      <p className="text-yellow-500 text-2xl font-bold">
+                        {leftDrink.price}
+                      </p> */}
+                    </div>
+                  )}
+                  {rightDrink && (
+                    <div className="text-center max-w-md">
+                      <div className="relative mb-8 h-96 flex items-end justify-center">
+                        {/* Actual drink image */}
+                        {leftDrink.image ? (
+                          <div className="w-48 h-80 relative">
+                            <Image
+                              src={leftDrink.image}
+                              alt={leftDrink.name}
+                              layout="fill"
+                              objectFit="contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="w-48 h-80 bg-gradient-to-b from-white/20 to-white/5 backdrop-blur-sm rounded-lg border border-white/20 flex items-center justify-center">
+                            <span className="text-white/50 text-sm">
+                              Hình đồ uống
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      {/* <h3 className="text-2xl font-bold text-yellow-500 mb-3 uppercase">
+                        {leftDrink.name}
+                      </h3>
+                      <p className="text-white/70 text-sm mb-4 px-4">
+                        {leftDrink.description}
+                      </p>
+                      <p className="text-yellow-500 text-2xl font-bold">
+                        {leftDrink.price}
+                      </p> */}
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Pagination Dots */}
+              <div className="flex justify-center gap-2 mt-12">
+                {currentDrinks.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentDrinkSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      currentDrinkSlide === index
+                        ? "bg-yellow-500 w-8"
+                        : "bg-white/30"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
