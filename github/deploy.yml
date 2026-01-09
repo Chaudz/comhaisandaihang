@@ -1,0 +1,53 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18" # Hoặc version bạn đang dùng
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Try to Build (Test)
+        run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: appleboy/ssh-action@master
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            # 1. Di chuyển vào thư mục dự án
+            cd /home/ubuntu/comhaisandaihang
+
+            # 2. Lấy code mới nhất về
+            git pull origin main
+
+            # 3. Cài đặt thư viện mới (nếu có)
+            npm install
+
+            # 4. Build lại dự án (Bước này nặng nhất)
+            npm run build
+
+            # 5. Khởi động lại PM2 để cập nhật code mới
+            pm2 restart comhaisandaihang
