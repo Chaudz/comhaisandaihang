@@ -68,8 +68,8 @@ export default function Home() {
   return (
     <main className="flex-grow overflow-x-hidden bg-slate-900">
       {/* Hero Section - Dark with Food Photography */}
-      <section className="relative min-h-screen bg-slate-950 overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-36">
+      <section className="relative min-h-screen bg-slate-950 overflow-hidden flex items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <motion.div
@@ -80,19 +80,19 @@ export default function Home() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight"
               >
                 <span className="text-red-500">Cơm Hải Sản</span>
                 <br />
                 <span className="text-white">Đại Hằng - Lý Sơn</span>
                 <br />
-                <span className="text-slate-300 text-3xl sm:text-4xl lg:text-5xl">
+                <span className="text-slate-300 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
                   Nhà Hàng Hải Sản
                 </span>
               </motion.h1>
               <motion.p
                 variants={fadeInUp}
-                className="text-slate-400 text-base md:text-lg mb-8 max-w-xl leading-relaxed"
+                className="text-slate-400 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 md:mb-8 max-w-xl leading-relaxed"
               >
                 Trải nghiệm hương vị biển cả tươi ngon với các món cơm hải sản
                 đặc sản, lẩu tươi sống được chế biến tại Lý Sơn. Không gian view
@@ -100,17 +100,17 @@ export default function Home() {
               </motion.p>
               <motion.div
                 variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4"
+                className="flex flex-col sm:flex-row gap-3 md:gap-4"
               >
                 <Link
                   href="/menu"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 rounded-full font-semibold hover:bg-slate-100 transition duration-300 shadow-lg"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-white text-slate-900 rounded-full font-semibold hover:bg-slate-100 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
                 >
                   Xem Thực Đơn
                 </Link>
                 <Link
                   href="/booking"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 shadow-lg"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
                 >
                   Đặt Bàn Ngay
                 </Link>
@@ -122,10 +122,10 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={slideInRight}
-              className="relative h-[500px] lg:h-[700px]"
+              className="relative h-[300px] sm:h-[350px] md:h-[450px] lg:h-[700px] mt-6 sm:mt-8 lg:mt-0"
             >
               {/* Main Large Image */}
-              <div className="absolute top-0 right-0 w-[85%] h-[60%] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-[85%] h-[55%] sm:h-[60%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/thuc-don.png"
                   alt="Món hải sản đặc biệt"
@@ -136,7 +136,7 @@ export default function Home() {
               </div>
 
               {/* Bottom Left Small Image */}
-              <div className="absolute bottom-20 left-0 w-[50%] h-[35%] rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-800">
+              <div className="absolute bottom-12 sm:bottom-20 left-0 w-[50%] h-[30%] sm:h-[35%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-slate-800">
                 <Image
                   src="/images/restaurant.png"
                   alt="Lẩu hải sản"
@@ -146,7 +146,7 @@ export default function Home() {
               </div>
 
               {/* Bottom Right Small Image */}
-              <div className="absolute bottom-0 right-0 w-[45%] h-[35%] rounded-2xl overflow-hidden shadow-2xl border-4 border-slate-800">
+              <div className="absolute bottom-0 right-0 w-[45%] h-[30%] sm:h-[35%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-slate-800">
                 <Image
                   src="/images/restaurant-interior.png"
                   alt="Cơm hải sản"
@@ -156,27 +156,19 @@ export default function Home() {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-red-500 rounded-full opacity-20 blur-xl"></div>
-              <div className="absolute bottom-10 -left-4 w-32 h-32 bg-teal-500 rounded-full opacity-10 blur-2xl"></div>
+              <div className="absolute -top-4 -right-4 w-16 sm:w-20 h-16 sm:h-20 bg-red-500 rounded-full opacity-20 blur-xl"></div>
+              <div className="absolute bottom-10 -left-4 w-24 sm:w-32 h-24 sm:h-32 bg-teal-500 rounded-full opacity-10 blur-2xl"></div>
             </motion.div>
           </div>
         </div>
 
         {/* Decorative Ingredients Floating */}
-        <div className="absolute top-10 left-10 opacity-30">
+        <div className="hidden md:block absolute top-10 left-10 opacity-30">
           <Image
             src="/images/decorative/tomato.png"
             alt=""
             width={60}
             height={60}
-          />
-        </div>
-        <div className="absolute top-40 right-20 opacity-20">
-          <Image
-            src="/images/decorative/onion.png"
-            alt=""
-            width={50}
-            height={50}
           />
         </div>
       </section>
@@ -185,7 +177,7 @@ export default function Home() {
       {/* <QuickBookingBar /> */}
 
       {/* About Section - White Background */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left - Image */}
@@ -229,14 +221,18 @@ export default function Home() {
                 đều được chế biến bằng công thức gia truyền kết hợp kỹ thuật
                 hiện đại.
               </motion.p>
-              <motion.div variants={fadeInUp} className="flex gap-4">
+              <motion.div
+                variants={fadeInUp}
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+              >
                 <Link
                   href="/about"
-                  className="inline-flex items-center px-6 py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 text-xs sm:text-sm md:text-base"
                 >
                   Tìm Hiểu Thêm
                 </Link>
-                <button className="inline-flex items-center px-6 py-3 border-2 border-slate-300 text-slate-700 rounded-full font-semibold hover:border-red-600 hover:text-red-600 transition duration-300">
+                <button className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 border-2 border-slate-300 text-slate-700 rounded-full font-semibold hover:border-red-600 hover:text-red-600 transition duration-300 text-xs sm:text-sm md:text-base">
+                  <span className="mr-2">Hotline: 0941390279</span>
                   <PhoneIcon className="h-5 w-5 mr-2" />
                 </button>
               </motion.div>
@@ -246,14 +242,14 @@ export default function Home() {
       </section>
 
       {/* Featured Menu Section - Dark Background */}
-      <section className="py-16 md:py-24 bg-slate-900">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
-            className="text-3xl md:text-5xl font-bold text-center text-white mb-12"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-6 sm:mb-8 md:mb-12"
           >
             Món Ngon <span className="text-red-500">Nổi Bật</span>
           </motion.h2>
@@ -393,7 +389,7 @@ export default function Home() {
       </section>
 
       {/* Food Showcase Section */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left - Content */}
@@ -422,16 +418,19 @@ export default function Home() {
               </motion.p>
 
               {/* Stats */}
-              <motion.div variants={fadeInUp} className="flex gap-6 mb-6">
+              <motion.div
+                variants={fadeInUp}
+                className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-6 mb-4 sm:mb-6"
+              >
                 <div className="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full">
-                  <ClockIcon className="h-5 w-5 text-red-600" />
-                  <span className="font-semibold text-slate-900">
+                  <ClockIcon className="h-4 sm:h-5 w-4 sm:w-5 text-red-600" />
+                  <span className="font-semibold text-slate-900 text-sm sm:text-base">
                     Mở 7h30AM
                   </span>
                 </div>
                 <div className="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full">
-                  <MapPinIcon className="h-5 w-5 text-red-600" />
-                  <span className="font-semibold text-slate-900">
+                  <MapPinIcon className="h-4 sm:h-5 w-4 sm:w-5 text-red-600" />
+                  <span className="font-semibold text-slate-900 text-sm sm:text-base">
                     Đảo Lý Sơn
                   </span>
                 </div>
@@ -440,7 +439,7 @@ export default function Home() {
               <motion.div variants={fadeInUp}>
                 <Link
                   href="/menu"
-                  className="inline-flex items-center px-8 py-4 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 shadow-lg"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
                 >
                   Xem Món Ngon
                 </Link>
@@ -465,7 +464,7 @@ export default function Home() {
               </div>
 
               {/* Small dish overlay */}
-              <div className="absolute top-6 left-6 w-40 h-40 rounded-xl overflow-hidden shadow-2xl border-4 border-white">
+              <div className="absolute top-4 sm:top-6 left-4 sm:left-6 w-28 sm:w-32 md:w-40 h-28 sm:h-32 md:h-40 rounded-lg sm:rounded-xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white">
                 <Image
                   src="/images/foods/thuc-don-2.png"
                   alt="Món phụ"
@@ -485,7 +484,7 @@ export default function Home() {
       <CustomerTestimonials />
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-slate-950 text-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-slate-950 text-white">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -495,13 +494,13 @@ export default function Home() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-3xl md:text-5xl font-bold mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6"
           >
             Đặt Bàn Ngay Hôm Nay
           </motion.h2>
           <motion.p
             variants={fadeInUp}
-            className="text-slate-400 text-lg mb-8 max-w-2xl mx-auto"
+            className="text-slate-400 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto"
           >
             Trải nghiệm hương vị hải sản tươi ngon tại Lý Sơn. Gọi ngay hoặc đặt
             bàn online để đảm bảo chỗ ngồi tốt nhất!
@@ -512,16 +511,17 @@ export default function Home() {
           >
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center px-10 py-4 bg-red-600 text-white rounded-full font-bold text-lg hover:bg-red-700 transition duration-300 shadow-lg"
+              className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-red-600 text-white rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg hover:bg-red-700 transition duration-300 shadow-lg"
             >
               Đặt Bàn Online
             </Link>
             <a
               href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-              className="inline-flex items-center justify-center px-10 py-4 border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white hover:text-slate-900 transition duration-300"
+              className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-2 sm:py-2.5 md:py-3 lg:py-4 border-2 border-white text-white rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg hover:bg-white hover:text-slate-900 transition duration-300"
             >
               <PhoneIcon className="h-5 w-5 mr-2" />
-              Gọi {phoneNumber}
+              <span className="hidden sm:inline">Gọi </span>
+              {phoneNumber}
             </a>
           </motion.div>
         </motion.div>
@@ -552,12 +552,13 @@ const RestaurantGallery = () => {
     },
     {
       src: "/images/spaces/khong-gian-4.png",
-      title: "View biển đẹp",
+      title: "Bar và view biển",
+
       description: "Ngắm cảnh biển Lý Sơn",
     },
     {
       src: "/images/spaces/khong-gian-5.png",
-      title: "Bar và view biển",
+      title: "View biển đẹp",
       description: "Lãng mạn và lung linh",
     },
     {
@@ -578,14 +579,14 @@ const RestaurantGallery = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-slate-800">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
-          className="text-3xl md:text-5xl font-bold text-center text-white mb-12"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-8 sm:mb-10 md:mb-12"
         >
           Không Gian <span className="text-red-500">Nhà Hàng</span>
         </motion.h2>
@@ -610,11 +611,11 @@ const RestaurantGallery = () => {
                   className="w-full h-full"
                 />
                 {/* Overlay with title */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 md:p-8">
-                  <h3 className="text-white text-2xl md:text-3xl font-bold mb-2">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 md:p-8">
+                  <h3 className="text-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-1 sm:mb-2">
                     {galleryImages[currentSlide].title}
                   </h3>
-                  <p className="text-slate-300 text-sm md:text-base">
+                  <p className="text-slate-300 text-[10px] sm:text-xs md:text-sm lg:text-base">
                     {galleryImages[currentSlide].description}
                   </p>
                 </div>
@@ -624,24 +625,24 @@ const RestaurantGallery = () => {
             {/* Previous Button */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-10"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-10"
               aria-label="Previous image"
             >
-              <ChevronLeftIcon className="h-6 w-6 text-slate-900" />
+              <ChevronLeftIcon className="h-5 sm:h-6 w-5 sm:w-6 text-slate-900" />
             </button>
 
             {/* Next Button */}
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-10"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 sm:w-12 h-10 sm:h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-10"
               aria-label="Next image"
             >
-              <ChevronRightIcon className="h-6 w-6 text-slate-900" />
+              <ChevronRightIcon className="h-5 sm:h-6 w-5 sm:w-6 text-slate-900" />
             </button>
           </div>
 
-          {/* Thumbnail Navigation */}
-          <div className="flex gap-3 mt-6 overflow-x-auto pb-2">
+          {/* Thumbnail Navigation - Hidden on mobile */}
+          <div className="hidden sm:flex gap-3 mt-6 overflow-x-auto pb-2">
             {galleryImages.map((image, index) => (
               <button
                 key={index}
@@ -707,19 +708,19 @@ const CustomerTestimonials = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
             Khách Hàng <span className="text-red-600">Nói Gì?</span>
           </h2>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto px-4">
             Những phản hồi thật sự từ khách hàng đã trải nghiệm dịch vụ của
             chúng tôi
           </p>

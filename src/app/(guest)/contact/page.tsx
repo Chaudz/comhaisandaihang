@@ -63,7 +63,7 @@ const ContactPage = () => {
   return (
     <div className="bg-slate-950 min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center justify-center">
+      <section className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] flex items-center justify-center pt-20 sm:pt-24 md:pt-0">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -80,8 +80,8 @@ const ContactPage = () => {
           transition={{ duration: 0.8 }}
           className="relative z-10"
         >
-          <div className="border-4 border-white px-8 py-4">
-            <h1 className="text-2xl md:text-2xl font-bold text-white tracking-widest">
+          <div className="border-2 sm:border-4 border-white px-6 sm:px-8 py-3 sm:py-4">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-widest">
               LIÊN HỆ
             </h1>
           </div>
@@ -89,13 +89,13 @@ const ContactPage = () => {
       </section>
 
       {/* Get in Touch Section */}
-      <section className="py-20 bg-slate-950">
-        <div className="container mx-auto px-4">
+      <section className="py-12 sm:py-16 md:py-20 bg-slate-950">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center text-yellow-500 text-2xl font-serif italic mb-16"
+            className="text-center text-yellow-500 text-lg sm:text-xl md:text-2xl font-serif italic mb-10 sm:mb-12 md:mb-16"
           >
             Liên lạc với chúng tôi!
           </motion.p>
@@ -106,18 +106,18 @@ const ContactPage = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-20"
+            className="grid sm:grid-cols-3 gap-8 sm:gap-10 md:gap-12 max-w-5xl mx-auto mb-12 sm:mb-16 md:mb-20"
           >
             {/* Phone */}
             <motion.div variants={fadeInUp} className="text-center">
-              <div className="flex justify-center mb-4">
-                <PhoneIcon className="w-12 h-12 text-yellow-500" />
+              <div className="flex justify-center mb-3 sm:mb-4">
+                <PhoneIcon className="w-10 h-10 sm:w-12 sm:h-12 text-yellow-500" />
               </div>
-              <h3 className="text-white text-sm uppercase tracking-wider mb-3">
+              <h3 className="text-white text-xs sm:text-sm uppercase tracking-wider mb-2 sm:mb-3">
                 ĐIỆN THOẠI
               </h3>
               <div className="h-px bg-yellow-500/50 w-16 mx-auto mb-3"></div>
-              <p className="text-slate-400 text-sm">
+              <p className="text-slate-400 text-xs sm:text-sm">
                 <a
                   href="tel:0941390279"
                   className="hover:text-yellow-500 transition"
@@ -129,14 +129,14 @@ const ContactPage = () => {
 
             {/* Address */}
             <motion.div variants={fadeInUp} className="text-center">
-              <div className="flex justify-center mb-4">
-                <MapPinIcon className="w-12 h-12 text-yellow-500" />
+              <div className="flex justify-center mb-3 sm:mb-4">
+                <MapPinIcon className="w-10 h-10 sm:w-12 sm:h-12 text-yellow-500" />
               </div>
-              <h3 className="text-white text-sm uppercase tracking-wider mb-3">
+              <h3 className="text-white text-xs sm:text-sm uppercase tracking-wider mb-2 sm:mb-3">
                 ĐỊA CHỈ
               </h3>
-              <div className="h-px bg-yellow-500/50 w-16 mx-auto mb-3"></div>
-              <p className="text-slate-400 text-sm">
+              <div className="h-px bg-yellow-500/50 w-12 sm:w-16 mx-auto mb-2 sm:mb-3"></div>
+              <p className="text-slate-400 text-sm sm:text-base">
                 Gần cảng cá cũ Lý Sơn
                 <br />
                 Quảng Ngãi, Việt Nam
@@ -145,14 +145,14 @@ const ContactPage = () => {
 
             {/* Email */}
             <motion.div variants={fadeInUp} className="text-center">
-              <div className="flex justify-center mb-4">
-                <EnvelopeIcon className="w-12 h-12 text-yellow-500" />
+              <div className="flex justify-center mb-3 sm:mb-4">
+                <EnvelopeIcon className="w-10 h-10 sm:w-12 sm:h-12 text-yellow-500" />
               </div>
-              <h3 className="text-white text-sm uppercase tracking-wider mb-3">
+              <h3 className="text-white text-xs sm:text-sm uppercase tracking-wider mb-2 sm:mb-3">
                 EMAIL
               </h3>
-              <div className="h-px bg-yellow-500/50 w-16 mx-auto mb-3"></div>
-              <p className="text-slate-400 text-sm">
+              <div className="h-px bg-yellow-500/50 w-12 sm:w-16 mx-auto mb-2 sm:mb-3"></div>
+              <p className="text-slate-400 text-sm sm:text-base">
                 <a
                   href="mailto:comhaisandaihang@gmail.com"
                   className="hover:text-yellow-500 transition"
@@ -172,16 +172,16 @@ const ContactPage = () => {
             className="max-w-2xl mx-auto"
           >
             <div className="text-center mb-10">
-              <p className="text-slate-400 text-sm uppercase tracking-wider mb-2">
+              <p className="text-slate-400 text-xs sm:text-sm uppercase tracking-wider mb-2">
                 NẾU BẠN CÓ BẤT KỲ CÂU HỎI NÀO
               </p>
-              <p className="text-white text-lg">
+              <p className="text-white text-sm sm:text-base md:text-lg">
                 Đừng ngần ngại gửi tin nhắn cho chúng tôi
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 <input
                   type="text"
                   name="name"
@@ -219,14 +219,14 @@ const ContactPage = () => {
                 required
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full px-6 py-4 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500 transition resize-none"
+                className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-500 transition resize-none text-sm sm:text-base"
               ></textarea>
 
               <div className="text-center">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`px-12 py-4 bg-yellow-600 text-slate-950 font-bold uppercase tracking-wider hover:bg-yellow-500 transition-all duration-300 ${
+                  className={`px-6 sm:px-8 md:px-10 lg:px-12 py-2.5 sm:py-3 md:py-4 bg-yellow-600 text-slate-950 font-bold uppercase tracking-wider hover:bg-yellow-500 transition-all duration-300 text-xs sm:text-sm md:text-base ${
                     isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
@@ -253,20 +253,21 @@ const ContactPage = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mt-20"
+            className="text-center mt-12 sm:mt-16 md:mt-20"
           >
-            <p className="text-yellow-500 text-xl font-serif italic mb-8">
+            <p className="text-yellow-500 text-base sm:text-lg md:text-xl font-serif italic mb-6 sm:mb-8">
               Kết nối với chúng tôi!
             </p>
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-center gap-4 sm:gap-6">
               {/* Facebook */}
               <a
-                href="#"
-                className="w-12 h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
+                href="https://www.facebook.com/NhaNghiDaiHangLySon0941390279"
+                target="_black"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
                 aria-label="Facebook"
               >
                 <svg
-                  className="w-6 h-6 text-slate-950"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-slate-950"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -277,11 +278,11 @@ const ContactPage = () => {
               {/* Instagram */}
               <a
                 href="#"
-                className="w-12 h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
                 aria-label="Instagram"
               >
                 <svg
-                  className="w-6 h-6 text-slate-950"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-slate-950"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -292,11 +293,11 @@ const ContactPage = () => {
               {/* Zalo */}
               <a
                 href="#"
-                className="w-12 h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-600 flex items-center justify-center hover:bg-yellow-500 transition"
                 aria-label="Zalo"
               >
                 <svg
-                  className="w-6 h-6 text-slate-950"
+                  className="w-5 h-5 sm:w-6 sm:h-6 text-slate-950"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -309,7 +310,7 @@ const ContactPage = () => {
       </section>
 
       {/* Map Section */}
-      <section className="h-[500px] relative">
+      <section className="h-[300px] sm:h-[400px] md:h-[500px] relative">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3823.8599415896876!2d109.09432851487953!3d15.375917247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31683eb59a9c7a5b%3A0x3925c20d8aec67ad!2zTmbDgCBI4bqwTkcgQ8ahTSBI4bqiSSBT4bqiTiDEkOG6oEkgSOG6sE5H!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
           width="100%"

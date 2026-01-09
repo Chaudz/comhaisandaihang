@@ -82,34 +82,37 @@ const BookingPage = () => {
   return (
     <div className="bg-slate-950 min-h-screen">
       {/* Main Booking Form Section */}
-      <section className="py-16 md:py-40">
+      <section className="py-20 sm:py-24 md:py-32 lg:py-40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-wide">
+            <div className="text-center mb-8 sm:mb-10 md:mb-12">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 tracking-wide">
                 ĐẶT BÀN ONLINE
               </h1>
-              <p className="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+              <p className="text-slate-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4 sm:px-0">
                 Trải nghiệm hương vị hải sản tươi ngon tại Lý Sơn. Vui lòng điền
                 thông tin bên dưới để đặt bàn trước.
               </p>
             </div>
 
             {/* Booking Form */}
-            <div className="bg-white/5 backdrop-blur-sm p-8 md:p-10 rounded-2xl border border-white/10">
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-white/5 backdrop-blur-sm p-5 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl border border-white/10">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4 sm:space-y-5 md:space-y-6"
+              >
                 {/* Date and Name Row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                   <div>
                     <label
                       htmlFor="date"
-                      className="block text-sm font-medium text-slate-300 mb-2"
+                      className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"
                     >
                       Ngày
                     </label>
                     <div className="relative">
-                      <CalendarDaysIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-white pointer-events-none z-10" />
+                      <CalendarDaysIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-white pointer-events-none z-10" />
                       <input
                         type="date"
                         name="date"
@@ -121,7 +124,7 @@ const BookingPage = () => {
                         style={{
                           colorScheme: "dark",
                         }}
-                        className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:brightness-0 [&::-webkit-calendar-picker-indicator]:contrast-200"
+                        className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 md:py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition text-sm sm:text-base [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:brightness-0 [&::-webkit-calendar-picker-indicator]:contrast-200"
                       />
                     </div>
                   </div>
@@ -129,7 +132,7 @@ const BookingPage = () => {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-slate-300 mb-2"
+                      className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"
                     >
                       Họ và Tên
                     </label>
@@ -141,22 +144,22 @@ const BookingPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Nhập họ tên đầy đủ"
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition"
+                      className="w-full px-3 sm:px-4 py-1.5 sm:py-2 md:py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition text-sm sm:text-base"
                     />
                   </div>
                 </div>
 
                 {/* Email and Guests Row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-slate-300 mb-2"
+                      className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"
                     >
                       Email
                     </label>
                     <div className="relative">
-                      <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                      <EnvelopeIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
                       <input
                         type="email"
                         name="email"
@@ -172,12 +175,12 @@ const BookingPage = () => {
                   <div>
                     <label
                       htmlFor="guests"
-                      className="block text-sm font-medium text-slate-300 mb-2"
+                      className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"
                     >
                       Số Khách
                     </label>
                     <div className="relative">
-                      <UserGroupIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                      <UserGroupIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
                       <input
                         type="number"
                         name="guests"
@@ -193,23 +196,23 @@ const BookingPage = () => {
                 </div>
 
                 {/* Time and Phone Row */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                   <div>
                     <label
                       htmlFor="time"
-                      className="block text-sm font-medium text-slate-300 mb-2"
+                      className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"
                     >
                       Giờ Đến
                     </label>
                     <div className="relative">
-                      <ClockIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 pointer-events-none z-10" />
+                      <ClockIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400 pointer-events-none z-10" />
                       <select
                         name="time"
                         id="time"
                         required
                         value={formData.time}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-10 py-3 bg-white/10 border border-white/20 rounded-lg text-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition cursor-pointer"
+                        className="w-full pl-9 sm:pl-10 pr-9 sm:pr-10 py-1.5 sm:py-2 md:py-2.5 bg-white/10 border border-white/20 rounded-lg text-white appearance-none focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition cursor-pointer text-sm sm:text-base"
                       >
                         {availableTimes.map((time) => (
                           <option
@@ -223,7 +226,7 @@ const BookingPage = () => {
                       </select>
                       <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <svg
-                          className="h-5 w-5 text-slate-400"
+                          className="h-4 w-4 sm:h-5 sm:w-5 text-slate-400"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -241,12 +244,12 @@ const BookingPage = () => {
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-slate-300 mb-2"
+                      className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"
                     >
                       Số Điện Thoại
                     </label>
                     <div className="relative">
-                      <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                      <PhoneIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
                       <input
                         type="tel"
                         name="phone"
@@ -265,12 +268,12 @@ const BookingPage = () => {
                 <div>
                   <label
                     htmlFor="requests"
-                    className="block text-sm font-medium text-slate-300 mb-2"
+                    className="block text-xs sm:text-sm font-medium text-slate-300 mb-1.5 sm:mb-2"
                   >
                     Yêu Cầu Đặc Biệt
                   </label>
                   <div className="relative">
-                    <ChatBubbleLeftRightIcon className="absolute left-3 top-3 h-5 w-5 text-slate-400" />
+                    <ChatBubbleLeftRightIcon className="absolute left-3 top-3 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
                     <textarea
                       name="requests"
                       id="requests"
@@ -278,7 +281,7 @@ const BookingPage = () => {
                       value={formData.requests}
                       onChange={handleChange}
                       placeholder="Nhập yêu cầu đặc biệt của bạn..."
-                      className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition resize-none"
+                      className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-1.5 sm:py-2 md:py-2.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition resize-none text-sm sm:text-base"
                       maxLength={1000}
                     ></textarea>
                     <div className="absolute bottom-3 right-3 text-xs text-slate-500">
@@ -288,11 +291,11 @@ const BookingPage = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="pt-4">
+                <div className="pt-1 sm:pt-2 md:pt-4">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-4 px-8 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold text-lg rounded-full hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-950 transition-all duration-300 shadow-lg hover:shadow-xl ${
+                    className={`w-full py-2.5 sm:py-3 md:py-3.5 px-5 sm:px-6 md:px-8 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold text-sm sm:text-base md:text-lg rounded-full hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-950 transition-all duration-300 shadow-lg hover:shadow-xl ${
                       isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                   >

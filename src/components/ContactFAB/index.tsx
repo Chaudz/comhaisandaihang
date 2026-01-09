@@ -87,7 +87,7 @@ const ContactFAB = () => {
         {/* Main FAB Button */}
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
-          className={`bg-teal-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl hover:bg-teal-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2`}
+          className={`bg-gradient-to-br from-yellow-500 to-yellow-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 border-2 border-yellow-400/30`}
           aria-expanded={isOpen}
           aria-label={isOpen ? "Đóng liên hệ" : "Mở liên hệ"}
           whileHover={{ scale: 1.1 }}

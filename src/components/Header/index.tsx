@@ -52,37 +52,44 @@ const Header = () => {
     >
       <div
         className={`transition-all duration-300 ${
-          isScrolled ? "py-3" : "py-4"
+          isScrolled ? "py-2 sm:py-3" : "py-3 sm:py-4"
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+            <Link
+              href="/"
+              className="flex items-center gap-2 sm:gap-3 flex-shrink-0"
+            >
               <Image
                 src="/images/image.png"
                 alt="Quán Cơm Hải Sản Đại Hằng"
-                width={isScrolled ? 60 : 90}
-                height={isScrolled ? 60 : 90}
-                className="object-contain transition-all duration-300 rounded-full"
+                width={isScrolled ? 55 : 65}
+                height={isScrolled ? 55 : 65}
+                className="object-contain transition-all duration-300 rounded-full w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px]"
                 priority
               />
               <div className="hidden sm:block">
                 <h1
                   className={`font-bold text-white transition-all duration-300 ${
-                    isScrolled ? "text-lg" : "text-xl"
+                    isScrolled
+                      ? "text-sm sm:text-base md:text-lg"
+                      : "text-base sm:text-lg md:text-xl"
                   }`}
                 >
                   Đại Hằng
                 </h1>
-                <p className="text-xs text-slate-400">Cơm Hải Sản Lý Sơn</p>
+                <p className="text-[10px] sm:text-xs text-slate-400">
+                  Cơm Hải Sản Lý Sơn
+                </p>
               </div>
             </Link>
 
             {/* Right Side: Navigation + Booking Button */}
-            <div className="flex items-center gap-8 lg:gap-10">
+            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 lg:gap-10">
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center space-x-8 lg:space-x-10">
+              <nav className="hidden md:flex items-center space-x-4 lg:space-x-8 xl:space-x-10 text-sm md:text-base">
                 <NavLink href="/" isActive={pathname === "/"}>
                   Trang Chủ
                 </NavLink>
@@ -98,7 +105,7 @@ const Header = () => {
               </nav>
 
               {/* Booking Button & Mobile Menu Toggle */}
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 sm:space-x-4">
                 {/* Animated Booking Button */}
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -106,7 +113,7 @@ const Header = () => {
                 >
                   <Link
                     href="/booking"
-                    className="hidden sm:inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-2.5 rounded-full font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 ease-in-out transform shadow-lg hover:shadow-xl"
+                    className="hidden sm:inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 rounded-full font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 ease-in-out transform shadow-lg hover:shadow-xl text-xs sm:text-sm md:text-base"
                   >
                     Đặt Bàn
                   </Link>
@@ -115,11 +122,11 @@ const Header = () => {
                 {/* Mobile Menu Button */}
                 <button
                   type="button"
-                  className="md:hidden p-2 text-white hover:text-red-500 transition-colors"
+                  className="md:hidden p-2 text-white hover:text-red-500 transition-colors rounded-lg active:bg-slate-800/50"
                   onClick={() => setMobileMenuOpen(true)}
+                  aria-label="Mở menu chính"
                 >
-                  <span className="sr-only">Mở menu chính</span>
-                  <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                  <Bars3Icon className="h-7 w-7" aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -158,30 +165,31 @@ const Header = () => {
               leaveFrom="translate-x-0"
               leaveTo="translate-x-full"
             >
-              <Dialog.Panel className="relative w-full max-w-xs bg-slate-950 shadow-xl h-full p-6 flex flex-col">
-                <div className="flex items-center justify-between mb-8 flex-shrink-0">
+              <Dialog.Panel className="relative w-full max-w-xs bg-slate-950 shadow-xl h-full p-5 sm:p-6 flex flex-col">
+                <div className="flex items-center justify-between mb-6 sm:mb-8 flex-shrink-0">
                   <Link
                     href="/"
                     className="-m-1.5 p-1.5 flex items-center gap-2"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     <Image
                       className="h-10 w-10 object-contain rounded-full"
-                      src="/images/logo.png"
+                      src="/images/image.png"
                       alt="Logo"
                       width={40}
                       height={40}
                     />
-                    <span className="text-white font-bold text-lg">
+                    <span className="text-white font-bold text-base sm:text-lg">
                       Đại Hằng
                     </span>
                   </Link>
                   <button
                     type="button"
-                    className="-m-2.5 rounded-md p-2.5 text-slate-300 hover:text-white transition-colors"
+                    className="-m-2.5 rounded-md p-2.5 text-slate-300 hover:text-white transition-colors active:bg-slate-800/50"
                     onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Đóng menu"
                   >
-                    <span className="sr-only">Đóng menu</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                    <XMarkIcon className="h-7 w-7" aria-hidden="true" />
                   </button>
                 </div>
 
@@ -193,7 +201,7 @@ const Header = () => {
                   animate="visible"
                 >
                   <div className="-my-6 divide-y divide-slate-800">
-                    <div className="space-y-2 py-6">
+                    <div className="space-y-1 py-6">
                       <MobileNavLink
                         href="/"
                         onClick={() => setMobileMenuOpen(false)}
@@ -221,13 +229,6 @@ const Header = () => {
                         isActive={pathname === "/contact"}
                       >
                         Liên Hệ
-                      </MobileNavLink>
-                      <MobileNavLink
-                        href="/gallery"
-                        onClick={() => setMobileMenuOpen(false)}
-                        isActive={pathname === "/gallery"}
-                      >
-                        Không Gian
                       </MobileNavLink>
                     </div>
                     <div className="py-6">
@@ -299,9 +300,9 @@ const MobileNavLink = ({
       <Link
         href={href}
         onClick={onClick}
-        className={`block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 transition-colors duration-150 ${
+        className={`block rounded-lg px-4 py-3 text-sm sm:text-base font-semibold leading-7 transition-colors duration-150 active:scale-95 ${
           isButton
-            ? "bg-gradient-to-r from-red-600 to-red-700 text-white text-center hover:from-red-700 hover:to-red-800"
+            ? "bg-gradient-to-r from-red-600 to-red-700 text-white text-center hover:from-red-700 hover:to-red-800 shadow-lg"
             : isActive
             ? "bg-slate-800 text-white"
             : "text-slate-300 hover:bg-slate-800 hover:text-white"
