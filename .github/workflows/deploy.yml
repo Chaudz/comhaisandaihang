@@ -51,4 +51,4 @@ jobs:
             npm run build
 
             # 5. Khởi động lại PM2 để cập nhật code mới
-            pm2 restart comhaisandaihang
+            pm2 restart nextjs-app
