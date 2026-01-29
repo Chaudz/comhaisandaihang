@@ -66,10 +66,10 @@ export default function Home() {
   const phoneNumber = "0941 390 279";
 
   return (
-    <main className="flex-grow overflow-x-hidden bg-slate-900">
+    <main className="flex-grow overflow-x-hidden bg-white">
       {/* Hero Section - Dark with Food Photography */}
-      <section className="relative min-h-screen bg-slate-950 overflow-hidden flex items-center">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32">
+      <section className="relative min-h-screen bg-gradient-to-br from-sky-50 via-white to-slate-50 overflow-hidden flex items-center pt-16 sm:pt-24 md:pt-28">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <motion.div
@@ -80,19 +80,19 @@ export default function Home() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight"
+                className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-2 sm:mb-4 md:mb-6 leading-tight"
               >
-                <span className="text-red-500">Cơm Hải Sản</span>
+                <span className="text-sky-700">Cơm Hải Sản</span>
                 <br />
-                <span className="text-white">Đại Hằng - Lý Sơn</span>
+                <span className="text-slate-900">Đại Hằng - Lý Sơn</span>
                 <br />
-                <span className="text-slate-300 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
+                <span className="text-slate-700 text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl">
                   Nhà Hàng Hải Sản
                 </span>
               </motion.h1>
               <motion.p
                 variants={fadeInUp}
-                className="text-slate-400 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-6 md:mb-8 max-w-xl leading-relaxed"
+                className="text-slate-600 text-xs sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-6 md:mb-8 max-w-xl leading-relaxed"
               >
                 Trải nghiệm hương vị biển cả tươi ngon với các món cơm hải sản
                 đặc sản, lẩu tươi sống được chế biến tại Lý Sơn. Không gian view
@@ -104,13 +104,13 @@ export default function Home() {
               >
                 <Link
                   href="/menu"
-                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-white text-slate-900 rounded-full font-semibold hover:bg-slate-100 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-sky-600 text-white font-semibold hover:bg-sky-700 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
                 >
                   Xem Thực Đơn
                 </Link>
                 <Link
                   href="/booking"
-                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 border-2 border-sky-600 text-sky-600 font-semibold hover:bg-sky-600 hover:text-white transition duration-300 text-xs sm:text-sm md:text-base"
                 >
                   Đặt Bàn Ngay
                 </Link>
@@ -122,10 +122,10 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={slideInRight}
-              className="relative h-[300px] sm:h-[350px] md:h-[450px] lg:h-[700px] mt-6 sm:mt-8 lg:mt-0"
+              className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[700px] mt-4 sm:mt-8 lg:mt-0"
             >
               {/* Main Large Image */}
-              <div className="absolute top-0 right-0 w-[85%] h-[55%] sm:h-[60%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-[85%] h-[55%] sm:h-[60%] overflow-hidden shadow-2xl">
                 <Image
                   src="/images/thuc-don.png"
                   alt="Món hải sản đặc biệt"
@@ -136,7 +136,7 @@ export default function Home() {
               </div>
 
               {/* Bottom Left Small Image */}
-              <div className="absolute bottom-12 sm:bottom-20 left-0 w-[50%] h-[30%] sm:h-[35%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-slate-800">
+              <div className="absolute bottom-12 sm:bottom-20 left-0 w-[50%] h-[30%] sm:h-[35%] overflow-hidden shadow-2xl">
                 <Image
                   src="/images/restaurant.png"
                   alt="Lẩu hải sản"
@@ -146,7 +146,7 @@ export default function Home() {
               </div>
 
               {/* Bottom Right Small Image */}
-              <div className="absolute bottom-0 right-0 w-[45%] h-[30%] sm:h-[35%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-slate-800">
+              <div className="absolute bottom-0 right-0 w-[45%] h-[30%] sm:h-[35%] overflow-hidden shadow-2xl sm:border-4">
                 <Image
                   src="/images/restaurant-interior.png"
                   alt="Cơm hải sản"
@@ -156,7 +156,7 @@ export default function Home() {
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -right-4 w-16 sm:w-20 h-16 sm:h-20 bg-red-500 rounded-full opacity-20 blur-xl"></div>
+              <div className="absolute -top-4 -right-4 w-16 sm:w-20 h-16 sm:h-20 bg-sky-500 rounded-full opacity-20 blur-xl"></div>
               <div className="absolute bottom-10 -left-4 w-24 sm:w-32 h-24 sm:h-32 bg-teal-500 rounded-full opacity-10 blur-2xl"></div>
             </motion.div>
           </div>
@@ -176,9 +176,9 @@ export default function Home() {
       {/* Quick Booking Bar */}
       {/* <QuickBookingBar /> */}
 
-      {/* About Section - White Background */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* About Section - Very Light Sky */}
+      <section className="py-8 sm:py-16 md:py-20 lg:py-24 bg-sky-50">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left - Image */}
             <motion.div
@@ -186,7 +186,7 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={slideInLeft}
-              className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl"
+              className="relative h-[400px] md:h-[500px] overflow-hidden shadow-xl"
             >
               <Image
                 src="/images/about-me.png"
@@ -205,15 +205,15 @@ export default function Home() {
             >
               <motion.h2
                 variants={fadeInUp}
-                className="text-3xl md:text-5xl font-bold text-slate-900 mb-6"
+                className="text-2xl md:text-5xl font-bold text-slate-900 mb-4"
               >
                 Về Chúng Tôi
                 <br />
-                <span className="text-red-600">Quán Cơm Hải Sản Đại Hằng</span>
+                <span className="text-sky-600">Quán Cơm Hải Sản Đại Hằng</span>
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
-                className="text-slate-600 text-base md:text-lg leading-relaxed mb-6"
+                className="text-slate-600 text-sm md:text-lg leading-relaxed mb-4"
               >
                 Tọa lạc tại đảo Lý Sơn xinh đẹp, Quán Cơm Hải Sản Đại Hằng tự
                 hào mang đến những món ăn từ hải sản tươi sống được đánh bắt
@@ -227,11 +227,11 @@ export default function Home() {
               >
                 <Link
                   href="/about"
-                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 text-xs sm:text-sm md:text-base"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-sky-600 text-white font-semibold hover:bg-sky-700 transition duration-300 text-xs sm:text-sm md:text-base"
                 >
                   Tìm Hiểu Thêm
                 </Link>
-                <button className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 border-2 border-slate-300 text-slate-700 rounded-full font-semibold hover:border-red-600 hover:text-red-600 transition duration-300 text-xs sm:text-sm md:text-base">
+                <button className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 border-2 border-slate-300 text-slate-700 font-semibold hover:border-sky-600 hover:text-sky-600 transition duration-300 text-xs sm:text-sm md:text-base">
                   <span className="mr-2">Hotline: 0941390279</span>
                   <PhoneIcon className="h-5 w-5 mr-2" />
                 </button>
@@ -242,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* Featured Menu Section - Dark Background */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-900">
+      {/* <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial="hidden"
@@ -251,7 +251,7 @@ export default function Home() {
             variants={fadeInUp}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-6 sm:mb-8 md:mb-12"
           >
-            Món Ngon <span className="text-red-500">Nổi Bật</span>
+            Món Ngon <span className="text-teal-400">Nổi Bật</span>
           </motion.h2>
 
           <motion.div
@@ -261,10 +261,9 @@ export default function Home() {
             viewport={{ once: true, amount: 0.1 }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {/* Dish Card 1 */}
             <motion.div
               variants={cardVariant}
-              className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="bg-slate-800 overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="relative h-48">
                 <Image
@@ -273,7 +272,7 @@ export default function Home() {
                   layout="fill"
                   objectFit="cover"
                 />
-                <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-3 left-3 bg-sky-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   5.0
                 </div>
               </div>
@@ -292,10 +291,9 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Dish Card 2 */}
             <motion.div
               variants={cardVariant}
-              className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="bg-slate-800 overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="relative h-48">
                 <Image
@@ -304,7 +302,7 @@ export default function Home() {
                   layout="fill"
                   objectFit="cover"
                 />
-                <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-3 left-3 bg-sky-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   4.9
                 </div>
               </div>
@@ -323,10 +321,9 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Dish Card 3 */}
             <motion.div
               variants={cardVariant}
-              className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="bg-slate-800 overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="relative h-48">
                 <Image
@@ -335,7 +332,7 @@ export default function Home() {
                   layout="fill"
                   objectFit="cover"
                 />
-                <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-3 left-3 bg-sky-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   5.0
                 </div>
               </div>
@@ -354,10 +351,9 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Dish Card 4 */}
             <motion.div
               variants={cardVariant}
-              className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="bg-slate-800 overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="relative h-48">
                 <Image
@@ -366,7 +362,7 @@ export default function Home() {
                   layout="fill"
                   objectFit="cover"
                 />
-                <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                <div className="absolute top-3 left-3 bg-sky-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   4.8
                 </div>
               </div>
@@ -386,11 +382,11 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Food Showcase Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-8 sm:py-16 md:py-20 lg:py-24 bg-slate-50">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left - Content */}
             <motion.div
@@ -402,15 +398,15 @@ export default function Home() {
             >
               <motion.h2
                 variants={fadeInUp}
-                className="text-3xl md:text-5xl font-bold text-slate-900 mb-6"
+                className="text-2xl md:text-5xl font-bold text-slate-900 mb-4"
               >
                 Đa Dạng Món Ăn
                 <br />
-                <span className="text-red-600">Thực Đơn Phong Phú</span>
+                <span className="text-sky-600">Thực Đơn Phong Phú</span>
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
-                className="text-slate-600 text-base md:text-lg leading-relaxed mb-6"
+                className="text-slate-600 text-sm md:text-lg leading-relaxed mb-4"
               >
                 Lựa chọn đa dạng từ cơm hải sản nhiều loại, lẩu tươi ngon, đến
                 các món chế biến đặc sản. Mỗi món ăn đều được trình bày đẹp mắt,
@@ -420,16 +416,16 @@ export default function Home() {
               {/* Stats */}
               <motion.div
                 variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-6 mb-4 sm:mb-6"
+                className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-6 mb-3 sm:mb-6"
               >
-                <div className="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full">
-                  <ClockIcon className="h-4 sm:h-5 w-4 sm:w-5 text-red-600" />
+                <div className="flex items-center gap-2 bg-sky-50 px-4 py-2 rounded-full">
+                  <ClockIcon className="h-4 sm:h-5 w-4 sm:w-5 text-sky-600" />
                   <span className="font-semibold text-slate-900 text-sm sm:text-base">
                     Mở 7h30AM
                   </span>
                 </div>
-                <div className="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full">
-                  <MapPinIcon className="h-4 sm:h-5 w-4 sm:w-5 text-red-600" />
+                <div className="flex items-center gap-2 bg-teal-50 px-4 py-2 rounded-full">
+                  <MapPinIcon className="h-4 sm:h-5 w-4 sm:w-5 text-teal-600" />
                   <span className="font-semibold text-slate-900 text-sm sm:text-base">
                     Đảo Lý Sơn
                   </span>
@@ -439,7 +435,7 @@ export default function Home() {
               <motion.div variants={fadeInUp}>
                 <Link
                   href="/menu"
-                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
+                  className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-sky-600 text-white font-semibold hover:bg-sky-700 transition duration-300 shadow-lg text-xs sm:text-sm md:text-base"
                 >
                   Xem Món Ngon
                 </Link>
@@ -454,7 +450,7 @@ export default function Home() {
               variants={slideInRight}
               className="relative h-[400px] md:h-[500px] order-1 lg:order-2"
             >
-              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl">
+              <div className="absolute inset-0 overflow-hidden shadow-xl">
                 <Image
                   src="/images/foods/thuc-don.png"
                   alt="Món ăn đặc sản"
@@ -464,7 +460,7 @@ export default function Home() {
               </div>
 
               {/* Small dish overlay */}
-              <div className="absolute top-4 sm:top-6 left-4 sm:left-6 w-28 sm:w-32 md:w-40 h-28 sm:h-32 md:h-40 rounded-lg sm:rounded-xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white">
+              <div className="absolute top-4 sm:top-6 left-4 sm:left-6 w-28 sm:w-32 md:w-40 h-28 sm:h-32 md:h-40 overflow-hidden shadow-2xl border-2 sm:border-4 border-white">
                 <Image
                   src="/images/foods/thuc-don-2.png"
                   alt="Món phụ"
@@ -480,21 +476,24 @@ export default function Home() {
       {/* Restaurant Gallery Section - Carousel */}
       <RestaurantGallery />
 
+      {/* Customer Check-in Gallery Section */}
+      <CustomerCheckinGallery />
+
       {/* Customer Testimonials Section */}
       <CustomerTestimonials />
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-slate-950 text-white">
+      <section className="py-8 sm:py-16 md:py-20 bg-slate-950 text-white">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
           variants={staggerContainer}
-          className="container mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          className="container mx-auto px-3 sm:px-6 lg:px-8 text-center"
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6"
+            className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 md:mb-6"
           >
             Đặt Bàn Ngay Hôm Nay
           </motion.h2>
@@ -511,13 +510,13 @@ export default function Home() {
           >
             <Link
               href="/booking"
-              className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-red-600 text-white rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg hover:bg-red-700 transition duration-300 shadow-lg"
+              className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-2 sm:py-2.5 md:py-3 lg:py-4 bg-sky-600 text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg hover:bg-sky-700 transition duration-300 shadow-lg"
             >
               Đặt Bàn Online
             </Link>
             <a
               href={`tel:${phoneNumber.replace(/\s/g, "")}`}
-              className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-2 sm:py-2.5 md:py-3 lg:py-4 border-2 border-white text-white rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg hover:bg-white hover:text-slate-900 transition duration-300"
+              className="inline-flex items-center justify-center px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-2 sm:py-2.5 md:py-3 lg:py-4 border-2 border-white text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg hover:bg-white hover:text-slate-900 transition duration-300"
             >
               <PhoneIcon className="h-5 w-5 mr-2" />
               <span className="hidden sm:inline">Gọi </span>
@@ -579,21 +578,21 @@ const RestaurantGallery = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-slate-800">
+    <section className="lg:h-[calc(100vh-100px)] py-8 sm:py-12 bg-stone-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-8 sm:mb-10 md:mb-12"
+          className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-slate-900 mb-6 sm:mb-10 md:mb-12"
         >
-          Không Gian <span className="text-red-500">Nhà Hàng</span>
+          Không Gian <span className="text-sky-600">Nhà Hàng</span>
         </motion.h2>
 
         <div className="relative max-w-5xl mx-auto">
           {/* Main Image Carousel */}
-          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative aspect-[16/9] overflow-hidden shadow-2xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
@@ -647,10 +646,10 @@ const RestaurantGallery = () => {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden transition-all duration-300 ${
+                className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 overflow-hidden transition-all duration-300 ${
                   currentSlide === index
-                    ? "ring-4 ring-red-500 scale-105"
-                    : "ring-2 ring-slate-600 hover:ring-slate-400 opacity-60 hover:opacity-100"
+                    ? "scale-105"
+                    : " hover:ring-slate-400 opacity-60 hover:opacity-100"
                 }`}
               >
                 <Image
@@ -665,11 +664,125 @@ const RestaurantGallery = () => {
 
           {/* Slide Counter */}
           <div className="text-center mt-6">
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-600 text-sm">
               {currentSlide + 1} / {galleryImages.length}
             </p>
           </div>
         </div>
+      </div>
+    </section>
+  );
+};
+
+// Customer Check-in Gallery Component
+const CustomerCheckinGallery = () => {
+  const checkinPhotos = [
+    {
+      src: "/images/checkins/checkin-1.png",
+      alt: "Khách hàng thưởng thức hải sản",
+    },
+    {
+      src: "/images/checkins/checkin-2.png",
+      alt: "Gia đình vui vẻ dùng bữa",
+    },
+    {
+      src: "/images/checkins/checkin-3.png",
+      alt: "Bạn bè check-in tại quán",
+    },
+    {
+      src: "/images/checkins/checkin-4.png",
+      alt: "Món ăn ngon miệng",
+    },
+    {
+      src: "/images/checkins/checkin-5.png",
+      alt: "Không gian ấm cúng",
+    },
+    {
+      src: "/images/checkins/checkin-6.png",
+      alt: "Khoảnh khắc đáng nhớ",
+    },
+    {
+      src: "/images/checkins/checkin-7.png",
+      alt: "View biển tuyệt đẹp",
+    },
+    {
+      src: "/images/checkins/checkin-8.png",
+      alt: "Bữa tiệc đặc biệt",
+    },
+  ];
+
+  return (
+    <section className="py-8 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-sky-50 via-white to-slate-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          className="text-center mb-8 sm:mb-12"
+        >
+          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-2 sm:mb-4">
+            Khách Hàng <span className="text-sky-600">Check-in</span>
+          </h2>
+          <p className="text-slate-600 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto px-4">
+            Những khoảnh khắc đáng nhớ của khách hàng tại Cơm Hải Sản Đại Hằng
+          </p>
+        </motion.div>
+
+        {/* Masonry Grid */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
+        >
+          {checkinPhotos.map((photo, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariant}
+              className={`relative overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer ${
+                index % 7 === 0 || index % 7 === 4
+                  ? "row-span-2"
+                  : "row-span-1"
+              }`}
+            >
+              <div
+                className={`relative w-full ${
+                  index % 7 === 0 || index % 7 === 4 ? "h-64 sm:h-80 md:h-96" : "h-32 sm:h-40 md:h-48"
+                }`}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:scale-110 transition-transform duration-500"
+                />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3 sm:p-4">
+                  <p className="text-white text-xs sm:text-sm font-medium">
+                    {photo.alt}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Instagram-style CTA */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          className="text-center mt-8 sm:mt-12"
+        >
+          <p className="text-slate-600 text-sm sm:text-base mb-4">
+            Chia sẻ khoảnh khắc của bạn với hashtag{" "}
+            <span className="font-bold text-sky-600">#ComHaiSanDaiHang</span>
+          </p>
+        </motion.div>
       </div>
     </section>
   );
@@ -708,17 +821,17 @@ const CustomerTestimonials = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+    <section className="py-8 sm:py-16 md:py-20 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-6 md:mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 sm:mb-4">
-            Khách Hàng <span className="text-red-600">Nói Gì?</span>
+          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-2 sm:mb-4">
+            Khách Hàng <span className="text-sky-600">Nói Gì?</span>
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto px-4">
             Những phản hồi thật sự từ khách hàng đã trải nghiệm dịch vụ của
@@ -737,11 +850,11 @@ const CustomerTestimonials = () => {
             <motion.div
               key={index}
               variants={cardVariant}
-              className="bg-slate-50 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-slate-50 p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               {/* User Info */}
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="w-12 h-12 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   {testimonial.name.charAt(0)}
                 </div>
                 <div className="flex-1">
@@ -766,7 +879,7 @@ const CustomerTestimonials = () => {
 
               {/* Quote Icon */}
               <div className="flex justify-end">
-                <ChatBubbleLeftRightIcon className="h-8 w-8 text-red-200" />
+                <ChatBubbleLeftRightIcon className="h-8 w-8 text-sky-200" />
               </div>
             </motion.div>
           ))}
@@ -782,7 +895,7 @@ const CustomerTestimonials = () => {
         >
           <Link
             href="/"
-            className="inline-flex items-center px-8 py-3 border-2 border-red-600 text-red-600 rounded-full font-semibold hover:bg-red-600 hover:text-white transition duration-300"
+            className="inline-flex items-center px-8 py-3 border-2 border-sky-600 text-sky-600 font-semibold hover:bg-sky-600 hover:text-white transition duration-300"
           >
             Xem Thêm Đánh Giá
           </Link>

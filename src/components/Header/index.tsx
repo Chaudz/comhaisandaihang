@@ -40,14 +40,9 @@ const Header = () => {
     <motion.header
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-slate-950/98 backdrop-blur-lg shadow-2xl"
-          : "bg-slate-950/95 backdrop-blur-md shadow-lg"
+          ? "bg-white shadow-xl"
+          : "bg-gray-50 shadow-md"
       }`}
-      animate={{
-        backgroundColor: isScrolled
-          ? "rgba(2, 6, 23, 0.98)"
-          : "rgba(2, 6, 23, 0.95)",
-      }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <div
@@ -70,17 +65,17 @@ const Header = () => {
                 className="object-contain transition-all duration-300 rounded-full w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] md:w-[75px] md:h-[75px] lg:w-[90px] lg:h-[90px]"
                 priority
               />
-              <div className="hidden sm:block">
+              <div>
                 <h1
-                  className={`font-bold text-white transition-all duration-300 ${
+                  className={`font-bold text-slate-900 transition-all duration-300 ${
                     isScrolled
-                      ? "text-sm sm:text-base md:text-lg"
-                      : "text-base sm:text-lg md:text-xl"
+                      ? "text-xs sm:text-sm md:text-base lg:text-lg"
+                      : "text-sm sm:text-base md:text-lg lg:text-xl"
                   }`}
                 >
                   Đại Hằng
                 </h1>
-                <p className="text-[10px] sm:text-xs text-slate-400">
+                <p className="text-[9px] sm:text-[10px] md:text-xs text-slate-600">
                   Cơm Hải Sản Lý Sơn
                 </p>
               </div>
@@ -113,7 +108,7 @@ const Header = () => {
                 >
                   <Link
                     href="/booking"
-                    className="hidden sm:inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 rounded-full font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 ease-in-out transform shadow-lg hover:shadow-xl text-xs sm:text-sm md:text-base"
+                    className="hidden sm:inline-block bg-sky-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 font-semibold hover:bg-sky-700 transition-all duration-300 ease-in-out transform shadow-lg hover:shadow-xl text-xs sm:text-sm md:text-base"
                   >
                     Đặt Bàn
                   </Link>
@@ -122,7 +117,7 @@ const Header = () => {
                 {/* Mobile Menu Button */}
                 <button
                   type="button"
-                  className="md:hidden p-2 text-white hover:text-red-500 transition-colors rounded-lg active:bg-slate-800/50"
+                  className="md:hidden p-2 text-slate-700 hover:text-sky-600 transition-colors rounded-lg active:bg-gray-100"
                   onClick={() => setMobileMenuOpen(true)}
                   aria-label="Mở menu chính"
                 >
@@ -265,14 +260,14 @@ const NavLink = ({
     <Link
       href={href}
       className={`relative font-medium transition-colors duration-200 ${
-        isActive ? "text-white" : "text-slate-300 hover:text-white"
+        isActive ? "text-sky-600" : "text-slate-800 hover:text-sky-600"
       }`}
     >
       {children}
       {/* Active underline */}
       {isActive && (
         <motion.span
-          className="absolute left-0 bottom-[-8px] h-[2px] bg-red-500 w-full"
+          className="absolute left-0 bottom-[-8px] h-[2px] bg-sky-600 w-full"
           layoutId="activeNav"
           transition={{ duration: 0.3 }}
         />
@@ -302,7 +297,7 @@ const MobileNavLink = ({
         onClick={onClick}
         className={`block rounded-lg px-4 py-3 text-sm sm:text-base font-semibold leading-7 transition-colors duration-150 active:scale-95 ${
           isButton
-            ? "bg-gradient-to-r from-red-600 to-red-700 text-white text-center hover:from-red-700 hover:to-red-800 shadow-lg"
+            ? "bg-sky-600 text-white text-center hover:bg-sky-700 shadow-lg"
             : isActive
             ? "bg-slate-800 text-white"
             : "text-slate-300 hover:bg-slate-800 hover:text-white"
