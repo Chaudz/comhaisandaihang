@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://comhaisandaihang.com/sitemap.xml
+Sitemap: https://nhahangdaihang.com/sitemap.xml
 
 # Block AI crawlers if desired (optional)
 # User-agent: GPTBot
