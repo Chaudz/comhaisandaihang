@@ -16,6 +16,12 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 const menuData = {
   appetizers: [
     {
+      name: "Cơm trắng",
+      description: "Cơm trắng",
+      price: "120.000 ₫",
+      image: "/images/foods/com-trang.png",
+    },
+    {
       name: "Canh cá",
       description:
         "Canh cá tươi ngon nấu chua thanh mát, rau thơm đậm đà hương vị",
@@ -24,8 +30,7 @@ const menuData = {
     },
     {
       name: "Cơm Lý Sơn",
-      description:
-        "Cơm hải sản Lý Sơn đặc sắc với tôm, mực, nghêu tươi ngon",
+      description: "Cơm hải sản Lý Sơn đặc sắc với tôm, mực, nghêu tươi ngon",
       price: "150.000 ₫",
       image: "/images/foods/com-ly-son-1.png",
     },
@@ -38,8 +43,7 @@ const menuData = {
     },
     {
       name: "Tôm hùm nướng",
-      description:
-        "Tôm hùm baby nướng bơ tỏi thơm phức, ăn kèm rau củ tươi",
+      description: "Tôm hùm baby nướng bơ tỏi thơm phức, ăn kèm rau củ tươi",
       price: "850.000 ₫",
       image: "/images/foods/tomhum.png",
     },
@@ -52,43 +56,43 @@ const menuData = {
     },
     {
       name: "Cua huỳnh đế hấp",
-      description:
-        "Cua huỳnh đế tươi sống hấp bia, giữ trọn vị ngọt tự nhiên",
+      description: "Cua huỳnh đế tươi sống hấp bia, giữ trọn vị ngọt tự nhiên",
       price: "450.000 ₫",
       image: "/images/foods/cuahuynhde.png",
     },
     {
-      name: "Ba chỉ rang muối",
-      description:
-        "Ba chỉ heo rang muối ớt thơm nồng, giòn tan hấp dẫn",
+      name: "Ba chỉ rang cháy cạnh",
+      description: "Ba chỉ heo rang cháy cạnh giòn tan hấp dẫn",
       price: "95.000 ₫",
       image: "/images/foods/ba-chi-rang.png",
     },
     {
       name: "Cá chuyên giòn",
-      description:
-        "Cá chuyên tươi chiên giòn vàng, chấm mắm gừng cay nồng",
+      description: "Cá chuyên tươi chiên giòn vàng, chấm mắm gừng cay nồng",
       price: "135.000 ₫",
       image: "/images/foods/ca-chuyen-gion.png",
     },
     {
-      name: "Canh mồng tơi",
-      description:
-        "Canh mồng tơi nấu tôm khô, vị ngọt thanh đơn giản mà ngon",
+      name: "Canh mồng tơi riêu cua",
+      description: "Canh mồng tơi nấu tôm khô, vị ngọt thanh đơn giản mà ngon",
       price: "65.000 ₫",
       image: "/images/foods/canh-mong-toi.png",
     },
     {
+      name: "Cải thìa xào tỏi",
+      description: "Cải thìa xanh non xào tỏi phi thơm, giòn ngọt thanh mát",
+      price: "65.000 ₫",
+      image: "/images/foods/cai-thia.png",
+    },
+    {
       name: "Canh cá",
-      description:
-        "Canh cá nấu chua cay, đậm đà hương vị miền Trung",
+      description: "Canh cá nấu chua cay, đậm đà hương vị miền Trung",
       price: "110.000 ₫",
       image: "/images/foods/canhca.png",
     },
     {
       name: "Chả cá chiên",
-      description:
-        "Chả cá tươi chiên vàng giòn, thơm lừng mùi thì là",
+      description: "Chả cá tươi chiên vàng giòn, thơm lừng mùi thì là",
       price: "98.000 ₫",
       image: "/images/foods/cha-ca-chien.png",
     },
@@ -101,8 +105,7 @@ const menuData = {
     },
     {
       name: "Cơm Lý Sơn truyền thống",
-      description:
-        "Cơm hải sản Lý Sơn theo công thức gia truyền, đậm vị biển",
+      description: "Cơm hải sản Lý Sơn theo công thức gia truyền, đậm vị biển",
       price: "165.000 ₫",
       image: "/images/foods/com-ly-son-4.png",
     },
@@ -114,80 +117,138 @@ const menuData = {
       image: "/images/foods/com-ran-hai-san-2.png",
     },
     {
-      name: "Giá đậu ván xào",
-      description:
-        "Giá đậu ván xào tỏi tươi giòn ngọt, thanh mát bổ dưỡng",
+      name: "Giá đậu ván trộn (Đặc sản Lý Sơn)",
+      description: "Giá đậu ván trộn tỏi tươi giòn ngọt, thanh mát bổ dưỡng",
       price: "55.000 ₫",
       image: "/images/foods/gia-dau-van.png",
     },
     {
+      name: "Tôm hùm nướng mọi+ tiết canh",
+      description: "Tôm hùm nướng mọi thơm lừng, tiết canh tươi ngon bổ dưỡng",
+      price: "55.000 ₫",
+      image: "/images/foods/tom-hung-nuong-moi-tiet-canh.png",
+    },
+    {
+      name: "Tôm hùm đỏ hấp",
+      description: "Tôm hùm đỏ tươi sống hấp, giữ trọn vị ngọt tự nhiên",
+      price: "55.000 ₫",
+      image: "/images/foods/tom-hung-do-hap.png",
+    },
+    {
+      name: "Hàu điếu xào chua ngọt ( đặc sản lý sơn )",
+      description: "Hàu điếu Lý Sơn xào chua ngọt đậm đà, thơm ngon hấp dẫn",
+      price: "55.000 ₫",
+      image: "/images/foods/hau-dieu-xao-chua-ngot.png",
+    },
+    {
       name: "Gỏi bạch tuộc trộn dừa",
-      description:
-        "Bạch tuộc tươi trộn dứa chua ngọt, rau thơm độc đáo",
+      description: "Bạch tuộc tươi trộn dứa chua ngọt, rau thơm độc đáo",
       price: "155.000 ₫",
       image: "/images/foods/goi-bach-tuot-tron-dua.png",
     },
     {
       name: "Gỏi ốc trộn",
-      description:
-        "Ốc nhồi, ốc móng tay trộn rau răm, hành phi giòn thơm",
+      description: "Ốc nhồi, ốc móng tay trộn rau răm, hành phi giòn thơm",
       price: "125.000 ₫",
       image: "/images/foods/goi-oc-tron.png",
     },
     {
+      name: "Ốc nón hấp ( ốc đụn )",
+      description: "Ốc nón hấp (ốc đụn) đặc sản Lý Sơn, thơm ngọt tự nhiên",
+      price: "125.000 ₫",
+      image: "/images/foods/oc-non-ruong.png",
+    },
+    {
       name: "Hàu nướng phô mai",
-      description:
-        "Hàu tươi nướng phô mai béo ngậy, hành lá thơm lừng",
+      description: "Hàu tươi nướng phô mai béo ngậy, hành lá thơm lừng",
       price: "185.000 ₫",
       image: "/images/foods/hau-nuong-pho-mai.png",
     },
     {
-      name: "Lẩu gà nấu nấm",
+      name: "Gỏi cá bò+ nước sốt ( đặc sản lý sơn )",
+      description: "Gỏi cá bò tươi ngon đặc sản Lý Sơn, nước sốt đậm đà",
+      price: "185.000 ₫",
+      image: "/images/foods/goi-ca-bo.png",
+    },
+    {
+      name: "Gà hấp hành",
+      description: "Gà ta hấp hành gừng thơm mềm, giữ vị ngọt tự nhiên",
+      price: "185.000 ₫",
+      image: "/images/foods/ga-hap-hanh.png",
+    },
+    {
+      name: "Gỏi tỏi non ( đặc sản lý sơn )",
+      description: "Gỏi tỏi non đặc sản Lý Sơn, giòn ngọt thanh mát bổ dưỡng",
+      price: "185.000 ₫",
+      image: "/images/foods/goi-toi-non.png",
+    },
+    {
+      name: "Ốc xà cừ vỏ hấp chấm muối tiêu chanh",
+      description: "Ốc xà cừ tươi hấp nguyên vỏ, chấm muối tiêu chanh đậm đà",
+      price: "185.000 ₫",
+      image: "/images/foods/oc-xa-cu.png",
+    },
+
+    {
+      name: "Sò nướng mỡ hành",
+      description: "Sò biển nướng mỡ hành thơm lừng, béo ngậy hấp dẫn",
+      price: "185.000 ₫",
+      image: "/images/foods/xo-nuong-mo-hanh.png",
+    },
+
+    {
+      name: "Bạch tuột non xào lá đinh lăng",
       description:
-        "Lẩu gà ta nấu nấm rơm, nấm hương thanh ngọt bổ dưỡng",
+        "Bạch tuột non giòn ngọt xào lá đinh lăng thơm nồng lạ miệng",
+      price: "185.000 ₫",
+      image: "/images/foods/bach-tuoc-non-xao.png",
+    },
+    {
+      name: "Cá kho tộ",
+      description: "Cá kho tộ đất đậm đà, thấm vị, ăn kèm cơm nóng",
+      price: "185.000 ₫",
+      image: "/images/foods/ca-kho-to.png",
+    },
+    {
+      name: "Lẩu gà nấu nấm",
+      description: "Lẩu gà ta nấu nấm rơm, nấm hương thanh ngọt bổ dưỡng",
       price: "280.000 ₫",
       image: "/images/foods/lau-ga-nau-nam.png",
     },
     {
       name: "Mực lá chiên xù",
-      description:
-        "Mực lá tươi chiên xù giòn rụm, chấm muối ớt xanh",
+      description: "Mực lá tươi chiên xù giòn rụm, chấm muối ớt xanh",
       price: "165.000 ₫",
       image: "/images/foods/muc-la-chien-xu.png",
     },
     {
-      name: "Mực xào tỏi non",
-      description:
-        "Mực tươi xào tỏi non thơm nồng, giòn ngọt đậm đà",
+      name: "Mực lá xào tỏi non",
+      description: "Mực tươi xào tỏi non thơm nồng, giòn ngọt đậm đà",
       price: "145.000 ₫",
       image: "/images/foods/muc-xao-toi-non.png",
     },
     {
       name: "Nhum nướng mỡ hành",
-      description:
-        "Nhum biển nướng mỡ hành phi thơm béo, đậm vị biển",
+      description: "Nhum biển nướng mỡ hành phi thơm béo, đậm vị biển",
       price: "195.000 ₫",
       image: "/images/foods/nhum-nuong-mo-hanh.png",
     },
     {
       name: "Ốc xà cừ xào xả ớt",
-      description:
-        "Ốc xà cừ tươi xào xả ớt cay nồng, thơm lừng hấp dẫn",
+      description: "Ốc xà cừ tươi xào xả ớt cay nồng, thơm lừng hấp dẫn",
       price: "135.000 ₫",
       image: "/images/foods/oc-xa-cu-xao-xa-ot.png",
     },
-  
+
     {
       name: "Thực đơn đặc biệt",
-      description:
-        "Set menu hải sản cao cấp cho 2-4 người, đa dạng món ngon",
+      description: "Set menu hải sản cao cấp cho 2-4 người, đa dạng món ngon",
       price: "1.200.000 ₫",
       image: "/images/foods/thuc-don.png",
     },
     {
       name: "Thực đơn combo",
-      description:
-        "Combo món ăn phong phú với hải sản tươi ngon, đủ mặn ngọt",
+      description: "Combo món ăn phong phú với hải sản tươi ngon, đủ mặn ngọt",
       price: "980.000 ₫",
       image: "/images/foods/thuc-don-2.png",
     },

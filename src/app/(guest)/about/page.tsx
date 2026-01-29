@@ -50,6 +50,29 @@ const AboutPage = () => {
           <p className="text-slate-300 text-base sm:text-lg md:text-xl mb-6 sm:mb-8 font-light tracking-wide">
             Nơi hương vị biển cả hòa quyện cùng nghệ thuật ẩm thực tinh tế
           </p>
+          <div className="max-w-3xl mx-auto mb-8 sm:mb-10">
+            <div className="backdrop-blur-md bg-white/5 border border-white/20 rounded-lg px-6 sm:px-8 py-6 sm:py-8">
+              <ul className="text-slate-200 text-base sm:text-lg space-y-3 sm:space-y-4 text-center">
+                <li className="inline-block text-left">
+                  <span className="text-red-500 mr-3 text-xl font-bold">✓</span>
+                  <span className="font-light">
+                    Chuyên phục vụ cơm gia đình, nhóm bạn, công ty lữ hành
+                  </span>
+                </li>
+                <li className="inline-block text-left">
+                  <span className="text-red-500 mr-3 text-xl font-bold">✓</span>
+                  <span className="font-light">Phòng máy lạnh view biển</span>
+                </li>
+                <li className="inline-block text-left">
+                  <span className="text-red-500 mr-3 text-xl font-bold">✓</span>
+                  <span className="font-light">
+                    Sức chứa ban ngày 350 khách, ban đêm ngoài trời xát biển 600
+                    khách
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
           <Link
             href="/menu"
             className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 border border-white/30 text-white hover:bg-white hover:text-slate-950 transition-all duration-300 tracking-wider text-xs sm:text-sm"
